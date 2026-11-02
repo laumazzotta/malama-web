@@ -23,6 +23,31 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ---------- menú móvil ---------- */
+  var menu = document.getElementById('mobile-menu');
+  var toggle = document.querySelector('.nav-toggle');
+  function setMenu(open) {
+    if (!menu || !toggle) return;
+    menu.classList.toggle('open', open);
+    menu.setAttribute('aria-hidden', String(!open));
+    toggle.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+    (open ? menu.querySelector('.mobile-menu-close') : toggle).focus();
+  }
+  if (menu && toggle) {
+    toggle.addEventListener('click', function () { setMenu(true); });
+    menu.querySelector('.mobile-menu-close').addEventListener('click', function () { setMenu(false); });
+    menu.querySelectorAll('[data-menu-close]').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false);
+    });
+    window.matchMedia('(min-width:721px)').addEventListener('change', function (e) {
+      if (e.matches && menu.classList.contains('open')) setMenu(false);
+    });
+  }
+
   /* ---------- aparición de secciones al hacer scroll ---------- */
   var targets = document.querySelectorAll('.reveal, .stagger');
   if ('IntersectionObserver' in window) {
@@ -70,13 +95,16 @@
     rail.addEventListener('pointerdown', function (e) {
       if (e.button) return;
       dragging = true; moved = 0; startX = e.clientX; startScroll = pos;
-      rail.classList.add('is-dragging');
-      if (rail.setPointerCapture) { try { rail.setPointerCapture(e.pointerId); } catch (err) {} }
     });
     rail.addEventListener('pointermove', function (e) {
       if (!dragging) return;
       var dx = e.clientX - startX;
       if (Math.abs(dx) > moved) moved = Math.abs(dx);
+      if (moved <= 6) return; /* un toque o clic simple no es arrastre: el enlace debe funcionar */
+      if (!rail.classList.contains('is-dragging')) {
+        rail.classList.add('is-dragging');
+        if (rail.setPointerCapture) { try { rail.setPointerCapture(e.pointerId); } catch (err) {} }
+      }
       pos = startScroll - dx; wrapPos(); rail.scrollLeft = pos;
     });
     var endDrag = function (e) {
@@ -114,17 +142,27 @@
   }
 
   /* ---------- formulario de contacto ----------
-     Se envía a Netlify Forms (formulario "contacto"). Netlify detecta el formulario al
-     desplegar (atributo data-netlify) y guarda los mensajes en Forms > contacto.
-     Solo funciona en el sitio publicado en Netlify: abierto en local el envío falla y
-     se muestra el aviso de error. */
+     "Enviar por mail": se envía a Netlify Forms (formulario "contacto"). Netlify detecta
+     el formulario al desplegar (atributo data-netlify) y guarda los mensajes en
+     Forms > contacto. Solo funciona en el sitio publicado en Netlify: abierto en local
+     el envío falla y se muestra el aviso de error.
+     "Enviar por WhatsApp": abre el chat con el mensaje ya armado. */
+  var WA_NUMBER = '5491124005587';
   var form = document.getElementById('contact-form');
   var ok = document.getElementById('form-success');
   var fail = document.getElementById('form-error');
   if (form && ok) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var btn = form.querySelector('button[type="submit"]');
+      if (e.submitter && e.submitter.value === 'whatsapp') {
+        var f = form.elements;
+        var texto = 'Hola! Soy ' + f.nombre.value.trim() + ' (' + f.email.value.trim() + ').\n' +
+          'Tipo de proyecto: ' + f.tipo.value + '\n\n' + f.mensaje.value.trim();
+        window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(texto),
+          '_blank', 'noopener');
+        return;
+      }
+      var btn = e.submitter || form.querySelector('button[type="submit"]');
       var label = btn.textContent;
       if (fail) fail.hidden = true;
       btn.disabled = true;

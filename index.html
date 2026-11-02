@@ -64,6 +64,14 @@
   .btn-primary:hover{background-position:100% 50%;transform:translateY(-2px);box-shadow:0 18px 44px -12px rgba(125,7,242,1);}
   .btn-ghost{background:transparent;border-color:var(--line-strong);color:var(--ink-on-gradient);}
   .btn-ghost:hover{border-color:var(--gradient-teal);color:var(--gradient-teal);transform:translateY(-2px);}
+  .form-actions{display:flex;flex-direction:row;gap:12px;}
+  .form-actions .btn{flex:1 1 0;min-width:0;padding-left:16px;padding-right:16px;}
+  @media (max-width:720px){
+    .form-actions .btn{white-space:normal;text-align:center;line-height:1.25;padding-top:15px;padding-bottom:15px;font-size:12px;}
+  }
+  @media (max-width:420px){
+    .form-actions{flex-direction:column;}
+  }
   .btn-on-gradient{background:var(--ink-on-gradient);color:var(--gradient-blue);}
   .btn-on-gradient:hover{transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(0,0,0,.5);}
   .btn-outline-on-gradient{background:transparent;border-color:var(--ink-on-gradient);color:var(--ink-on-gradient);}
@@ -83,6 +91,7 @@
   .nav-links a:hover{color:var(--ink-on-gradient);}
   .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--brand-gradient);border-radius:var(--radius-pill);transition:width .3s ease;}
   .nav-links a:hover::after{width:100%;}
+  .nav-toggle,.mobile-menu{display:none;}
 
   /* ---------- hero ---------- */
   .hero{position:relative;overflow:hidden;padding:104px 64px 96px;}
@@ -277,15 +286,29 @@
     .stage{justify-self:center;margin-top:48px;}
     .service-grid{grid-template-columns:repeat(2,1fr);}
     .about-split{grid-template-columns:1fr;}
-    .about-copy{padding:56px 40px 72px;}
-    .about-photo{padding:56px 40px;}
+    .about-copy{padding:56px 40px 72px;order:1;}
+    .about-photo{padding:84px 88px;order:2;}
     .contact{grid-template-columns:1fr;}
     .footer-top{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:720px){
+    .about-photo{padding:64px 44px 64px 52px;}
+    .about-photo > div{max-width:240px !important;}
+    .about-ring{top:-38px !important;right:-34px !important;width:104px !important;height:104px !important;border-width:5px !important;}
+    .about-bar{left:-44px !important;bottom:44px !important;width:110px !important;height:9px !important;}
     .section{padding:72px 24px;}
     .nav{padding:14px 20px;}
     .nav-links{display:none;}
+    .nav-cta{display:none;}
+    .nav-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--ink-on-gradient);cursor:pointer;}
+    .mobile-menu{display:flex;flex-direction:column;gap:8px;position:fixed;inset:0;z-index:80;padding:20px 24px 32px;background:rgba(12,10,17,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .25s ease,transform .25s ease,visibility .25s;}
+    .mobile-menu.open{opacity:1;visibility:visible;transform:none;}
+    .mobile-menu-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+    .mobile-menu-links{display:flex;flex-direction:column;}
+    .mobile-menu-links a{font:600 24px var(--font-display);color:var(--ink-on-gradient);padding:16px 0;border-bottom:1px solid var(--line);}
+    .mobile-menu .btn{margin-top:24px;justify-content:center;}
+    .mobile-menu-close{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--ink-on-gradient);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
+    body.menu-open{overflow:hidden;}
     .hero{padding:64px 24px 72px;}
     .stage{height:440px;}
     .mark{width:240px;margin-left:-120px;}
@@ -428,14 +451,28 @@
       <span>Malama</span>
     </a>
     <div class="nav-links"><a href="#servicios">Servicios</a>
-      <a href="#trabajos">Trabajos</a>
       <a href="#nosotros">Sobre mí</a>
+      <a href="#trabajos">Trabajos</a>
       <a href="#contacto">Contacto</a>
     </div>
     <div class="nav-cta">
       <a class="btn btn-primary" href="https://wa.me/5491124005587?text=Hola%21%20Quer%C3%ADa%20consultarte%20por%20un%20proyecto." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="margin-right:2px;"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>Hablemos</a>
     </div>
+    <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </nav>
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <a class="nav-brand" href="#top" data-menu-close><img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt=""><span>Malama</span></a>
+      <button class="mobile-menu-close" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="mobile-menu-links">
+      <a href="#servicios" data-menu-close>Servicios</a>
+      <a href="#nosotros" data-menu-close>Sobre mí</a>
+      <a href="#trabajos" data-menu-close>Trabajos</a>
+      <a href="#contacto" data-menu-close>Contacto</a>
+    </div>
+    <a class="btn btn-primary" data-menu-close href="https://wa.me/5491124005587?text=Hola%21%20Quer%C3%ADa%20consultarte%20por%20un%20proyecto." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="margin-right:2px;"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>Hablemos</a>
+  </div>
 
   <section class="hero" id="top">
     <div class="aurora a1"></div>
@@ -763,12 +800,15 @@
               <textarea id="d-mensaje" name="mensaje" placeholder="Contame un poco qué necesitás..." required=""></textarea>
             </div>
             <p class="form-error" id="form-error" role="alert" hidden>No pudimos enviar tu mensaje. Probá de nuevo o escribinos a <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
-            <button class="btn btn-primary" type="submit" style="width:100%;">ENVIAR MENSAJE</button>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" name="canal" value="mail">ENVIAR POR MAIL</button>
+              <button class="btn btn-ghost" type="submit" name="canal" value="whatsapp">ENVIAR POR WHATSAPP</button>
+            </div>
           </form>
                   <div class="form-success" id="form-success" hidden>
             <span class="check">✓</span>
             <h3>¡Listo, nos llegó!</h3>
-            <p>Lo leo con atención y te escribo para contarte cómo seguimos.</p>
+            <p>Lo miro y te escribo para contarte cómo seguimos.</p>
           </div>
       </div>
     </div>
