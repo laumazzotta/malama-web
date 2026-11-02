@@ -114,16 +114,35 @@
   }
 
   /* ---------- formulario de contacto ----------
-     TODO: por ahora NO envía nada: solo muestra el mensaje de éxito.
-     Para recibir los mensajes, conectar con un servicio de formularios
-     (Netlify Forms, Formspree, etc.) o un endpoint propio. */
+     Se envía a Netlify Forms (formulario "contacto"). Netlify detecta el formulario al
+     desplegar (atributo data-netlify) y guarda los mensajes en Forms > contacto.
+     Solo funciona en el sitio publicado en Netlify: abierto en local el envío falla y
+     se muestra el aviso de error. */
   var form = document.getElementById('contact-form');
   var ok = document.getElementById('form-success');
+  var fail = document.getElementById('form-error');
   if (form && ok) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      form.hidden = true;
-      ok.hidden = false;
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn.textContent;
+      if (fail) fail.hidden = true;
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        form.hidden = true;
+        ok.hidden = false;
+      }).catch(function () {
+        if (fail) fail.hidden = false;
+        btn.disabled = false;
+        btn.textContent = label;
+      });
     });
   }
 })();

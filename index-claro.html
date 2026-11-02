@@ -346,6 +346,8 @@
   html{scroll-behavior:smooth;scroll-padding-top:84px;}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
   .form-success[hidden]{display:none;}
+  .form-error{margin:0 0 16px;font-weight:600;font-size:14px;line-height:22px;color:#B3261E;}
+  .form-error a{text-decoration:underline;}
   /* evita que el contenido ensanche las grillas de 1 columna en pantallas chicas */
   @media (max-width:1024px){ .about-split{grid-template-columns:minmax(0,1fr);} }
   .stackbar{overflow-x:clip;}
@@ -635,7 +637,10 @@
         </div>
       </div>
       <div class="form-card">
-                  <form id="contact-form">
+                  <form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contacto">
+            <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama">
+            <p hidden><label>No completar este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <div class="field-row">
               <div class="field">
                 <label for="f-nombre">Nombre</label>
@@ -660,6 +665,7 @@
               <label for="f-mensaje">Mensaje</label>
               <textarea id="f-mensaje" name="mensaje" placeholder="Contame un poco qué necesitás..." required=""></textarea>
             </div>
+            <p class="form-error" id="form-error" role="alert" hidden>No pudimos enviar tu mensaje. Probá de nuevo o escribinos a <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
             <button class="btn btn-primary" type="submit" style="width:100%;">Mandar mensaje</button>
           </form>
                   <div class="form-success" id="form-success" hidden>
