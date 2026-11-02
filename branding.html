@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0C0A11">
+<meta name="description" content="Identidad de marca con Malama Digital.">
+<meta property="og:title" content="Branding · Malama Digital">
+<meta property="og:description" content="Identidad de marca con Malama Digital.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Branding · Malama Digital</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&amp;family=Josefin+Slab:wght@400&amp;display=swap">
+<style>
+  :root{
+    --text:#F1F1F1;--text-2:#C5C5C5;
+    --magenta:#AB05F2;--violet:#7D07F2;--blue:#5207F2;--teal:#23D9B7;--lime:#D7F205;
+    --ground:#0C0A11;--ground-2:#141120;--ground-3:#1B1727;--line:rgba(241,241,241,.10);
+    --display:"Nunito", system-ui, sans-serif;
+    --accent:"Josefin Slab", Georgia, serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);font-family:var(--display);color:var(--text);}
+  h1,h2,h3{margin:0;font-weight:600;}
+  p{margin:0;}
+  a{text-decoration:none;color:inherit;}
+  ul{margin:0;padding:0;list-style:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 64px;}
+  .eyebrow{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);}
+  .body{font:400 17px/30px var(--display);color:var(--text-2);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;font:600 13px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:17px 30px;border:1.5px solid transparent;transition:transform .25s ease, box-shadow .3s ease, background .3s ease, color .25s ease, border-color .25s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:linear-gradient(90deg,var(--violet),var(--blue));color:var(--text);box-shadow:0 14px 34px -12px rgba(125,7,242,.9);}
+  .btn-ghost{background:transparent;border-color:rgba(241,241,241,.24);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .btn-on-gradient{background:linear-gradient(90deg,var(--violet),var(--blue));color:var(--text);box-shadow:0 14px 34px -12px rgba(125,7,242,.9);}
+  .btn-outline-on-gradient{background:transparent;border-color:rgba(241,241,241,.30);color:var(--text);}
+  .btn-outline-on-gradient:hover{border-color:var(--teal);color:var(--teal);}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 64px;border-bottom:1px solid var(--line);background:rgba(12,10,17,.9);}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:28px;width:auto;}
+  .brand span{font:600 18px var(--display);}
+  .back{display:inline-flex;align-items:center;gap:9px;font:600 13px var(--display);letter-spacing:.04em;color:var(--text-2);border:1px solid var(--line);border-radius:999px;padding:11px 20px;transition:color .25s ease, border-color .25s ease;}
+  .back:hover{color:var(--teal);border-color:var(--teal);}
+
+  .hero{position:relative;overflow:hidden;padding:88px 0 96px;}
+  .aurora{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:60px;line-height:1.06;letter-spacing:-.02em;max-width:560px;}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--magenta),var(--violet),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px;}
+
+  .visual{position:relative;height:420px;display:flex;align-items:center;justify-content:center;}
+  .card{position:absolute;background:var(--ground-2);border:1px solid var(--line);border-radius:18px;box-shadow:0 34px 70px -34px rgba(0,0,0,.95);}
+  .bar{height:8px;border-radius:999px;background:rgba(241,241,241,.14);}
+  .bar.accent{background:linear-gradient(90deg,var(--blue),var(--teal));}
+  .block{border-radius:12px;background:linear-gradient(135deg,var(--magenta),var(--violet) 45%,var(--blue) 75%,var(--teal));}
+
+  .section{padding:88px 0;}
+  .section h2{font-size:38px;line-height:1.15;max-width:640px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:22px;margin-top:44px;}
+  .grid-2{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:20px 44px;margin-top:44px;}
+  .tile{background:var(--ground-2);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:transform .3s ease, border-color .3s ease;}
+  .tile:hover{transform:translateY(-6px);border-color:rgba(241,241,241,.2);}
+  .tile h3{font-size:19px;}
+  .tile p{font:400 15px/25px var(--display);color:var(--text-2);}
+  .band .tile{background:var(--ground-3);border-color:rgba(241,241,241,.13);}
+  .band .tile:hover{border-color:rgba(241,241,241,.26);}
+  .item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);}
+  .item i{width:9px;height:9px;border-radius:50%;margin-top:9px;flex-shrink:0;display:block;}
+  .item p{font:400 16px/26px var(--display);color:var(--text-2);}
+  .item strong{color:var(--text);font-weight:600;}
+
+  .steps{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:20px;margin-top:44px;}
+  .step{border-top:2px solid rgba(241,241,241,.14);padding-top:18px;display:flex;flex-direction:column;gap:8px;}
+  .step span{font:600 14px var(--display);color:var(--teal);letter-spacing:.06em;}
+  .step h3{font-size:18px;}
+  .step p{font:400 15px/24px var(--display);color:var(--text-2);}
+
+  .cta{position:relative;overflow:hidden;background:radial-gradient(900px 420px at 50% 120%,rgba(125,7,242,.55),transparent 70%),#15102A;border-top:1px solid rgba(241,241,241,.07);border-bottom:1px solid rgba(241,241,241,.07);padding:96px 64px;text-align:center;}
+  .cta img{position:absolute;right:-30px;bottom:-60px;width:320px;opacity:.14;pointer-events:none;}
+  .cta h2{position:relative;z-index:1;font-size:46px;line-height:1.1;max-width:720px;margin:0 auto;}
+  .cta p{position:relative;z-index:1;font:400 17px/28px var(--display);color:var(--text-2);max-width:560px;margin:18px auto 0;}
+  .cta-actions{position:relative;z-index:1;display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
+
+  .foot{padding:40px 64px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .foot p{font:400 13px var(--display);color:var(--text-2);}
+
+  /* ── Movimiento ─────────────────────────────────────────── */
+  @keyframes riseIn{from{opacity:0;translate:0 26px;}to{opacity:1;translate:0 0;}}
+  @keyframes floatY{0%,100%{translate:0 0;}50%{translate:0 -13px;}}
+  @keyframes shimmer{to{background-position:300% 50%;}}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(64px,46px) scale(1.12);}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-56px,62px) scale(1.09);}}
+  @keyframes gradientPan{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+  .aurora{animation:drift1 24s ease-in-out infinite;}
+  .aurora:nth-of-type(2){animation:drift2 29s ease-in-out infinite;}
+  .hero h1 em{background-image:linear-gradient(90deg,var(--magenta),var(--violet),var(--teal),var(--violet),var(--magenta));background-size:300% 100%;animation:shimmer 8s linear infinite;}
+  .visual .card{animation:floatY 9s ease-in-out infinite;}
+  .visual .card:nth-of-type(2){animation-duration:10.6s;animation-delay:.9s;}
+  .visual .card:nth-of-type(3){animation-duration:11.4s;animation-delay:1.7s;}
+  .cta img{animation:floatY 10s ease-in-out infinite;}
+
+  .anim-1{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) both;}
+  .anim-2{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .1s both;}
+  .anim-3{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .2s both;}
+  .anim-4{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .3s both;}
+  .anim-5{animation:riseIn 1.1s cubic-bezier(.2,.8,.2,1) .25s both;}
+
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      .reveal{animation:riseIn linear both;animation-timeline:view();animation-range:entry 4% entry 52%;}
+      .stagger > *{animation:riseIn linear both;animation-timeline:view();animation-range:entry 4% entry 52%;}
+      .stagger > *:nth-child(2){animation-range:entry 8% entry 56%;}
+      .stagger > *:nth-child(3){animation-range:entry 12% entry 60%;}
+      .stagger > *:nth-child(4){animation-range:entry 16% entry 64%;}
+      .stagger > *:nth-child(5){animation-range:entry 10% entry 58%;}
+      .stagger > *:nth-child(6){animation-range:entry 14% entry 62%;}
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition-duration:.01ms !important;}
+    .reveal,.stagger > *{opacity:1;translate:none;}
+  }
+  /* ══ Movimiento ampliado ═════════════════════════════════ */
+
+  @keyframes progGrow{from{scale:0 1;}to{scale:1 1;}}
+  @keyframes wordUp{from{translate:0 115%;rotate:3deg;opacity:0;}to{translate:0 0;rotate:0deg;opacity:1;}}
+  @keyframes vparScroll{from{translate:0 54px;}to{translate:0 -54px;}}
+  @keyframes clipIn{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 -10% 0 0);}}
+  @keyframes lineIn{from{scale:0 1;}to{scale:1 1;}}
+  @keyframes dotPop{from{scale:0;}to{scale:1;}}
+  @keyframes tileIn{from{opacity:0;translate:0 48px;scale:.94;rotate:x 14deg;}
+                    to{opacity:1;translate:0 0;scale:1;rotate:x 0deg;}}
+  @keyframes numIn{from{opacity:0;translate:0 16px;filter:blur(7px);}
+                   to{opacity:1;translate:0 0;filter:blur(0);}}
+  @keyframes auraPulse{0%,100%{opacity:.8;scale:1;}50%{opacity:1;scale:1.09;}}
+
+  /* 1 · barra de progreso del scroll */
+  .topbar{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+  .progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;transform-origin:0 50%;scale:0 1;
+    background:linear-gradient(90deg,var(--magenta),var(--violet),var(--blue),var(--teal),var(--lime));}
+  .hero .eyebrow::after{animation:lineIn .9s cubic-bezier(.2,.8,.2,1) .3s both;}
+
+  /* 2 · el titular entra palabra por palabra */
+  .hero h1{max-width:580px;}
+  .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;
+    padding:.18em 0;margin:-.18em 0;}
+  .hero h1 .w > span,.hero h1 .w > em{display:inline-block;
+    animation:wordUp 1s cubic-bezier(.16,1,.3,1) both;}
+  .hero h1 .w:nth-child(1) > *{animation-delay:.10s;}
+  .hero h1 .w:nth-child(2) > *{animation-delay:.17s;}
+  .hero h1 .w:nth-child(3) > *{animation-delay:.24s;}
+  .hero h1 .w:nth-child(4) > *{animation-delay:.30s;}
+  .hero h1 .w:nth-child(5) > *{animation-delay:.36s;}
+  .hero h1 .w:nth-child(6) > *{animation-delay:.46s;}
+  .hero h1 .w:nth-child(7) > *{animation-delay:.52s;}
+  .hero h1 .w:nth-child(8) > *{animation-delay:.58s;}
+  .hero h1 .w:nth-child(9) > *{animation-delay:.64s;}
+  .hero h1 .w:nth-child(n+10) > *{animation-delay:.70s;}
+
+  /* 3 · la maqueta responde al cursor y al scroll */
+  .visual{perspective:1200px;}
+  .vpar{position:absolute;inset:0;}
+  .visual .card{transform:rotate(var(--rot,0deg)) translate3d(var(--px,0px),var(--py,0px),0);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform;}
+
+  /* 4 · títulos con revelado de máscara + línea que se dibuja */
+  .section .eyebrow,.hero .eyebrow{display:inline-flex;align-items:center;gap:14px;}
+  .section .eyebrow::after,.hero .eyebrow::after{content:"";display:block;width:72px;height:1px;
+    background:linear-gradient(90deg,var(--teal),transparent);transform-origin:0 50%;}
+
+  /* 5 · tarjetas en 3D con foco que sigue al cursor */
+  .grid-3{perspective:1100px;}
+  .tile{position:relative;overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;}
+  .tile::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s ease;
+    background:radial-gradient(260px 210px at var(--mx,50%) var(--my,0%),rgba(140,24,250,.5),rgba(125,7,242,.14) 55%,transparent 72%);}
+  .tile:hover::before{opacity:1;}
+  .tile > *{position:relative;}
+  .tile:hover{transform:translateY(-9px) scale(1.015);border-color:rgba(35,217,183,.38);
+    box-shadow:0 30px 56px -32px rgba(125,7,242,.95);}
+
+  /* 6 · cada fila dibuja su línea y su punto */
+  .item{position:relative;border-bottom-color:transparent;}
+  .item::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,rgba(241,241,241,.22),rgba(241,241,241,.05));transform-origin:0 50%;}
+
+  /* 7 · el proceso dibuja su regla y los números entran con foco */
+  .step{position:relative;border-top-color:transparent;}
+  .step::before{content:"";position:absolute;top:-2px;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--teal),rgba(35,217,183,0));transform-origin:0 50%;}
+  .step span{display:inline-block;}
+
+  /* 8 · aura viva detrás del remate */
+  .cta::before{content:"";position:absolute;left:50%;bottom:-200px;width:1040px;height:540px;
+    margin-left:-520px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(125,7,242,.5),rgba(171,5,242,.16) 60%,transparent 78%);
+    filter:blur(44px);animation:auraPulse 9s ease-in-out infinite;}
+
+  /* 9 · destello al pasar por los botones llenos */
+  .btn-primary,.btn-on-gradient{position:relative;overflow:hidden;}
+  .btn-primary::after,.btn-on-gradient::after{content:"";position:absolute;top:0;bottom:0;width:55%;
+    pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.34),transparent);
+    translate:-190% 0;transition:translate .8s cubic-bezier(.3,.7,.3,1);}
+  .btn-primary:hover::after,.btn-on-gradient:hover::after{translate:330% 0;}
+  .btn-primary:hover,.btn-on-gradient:hover{transform:translateY(-3px) scale(1.03);
+    box-shadow:0 22px 46px -14px rgba(125,7,242,1);}
+  .btn-ghost:hover,.btn-outline-on-gradient:hover{box-shadow:0 0 0 1px rgba(35,217,183,.35),0 16px 34px -20px rgba(35,217,183,.8);}
+
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      .progress{animation:progGrow linear both;animation-timeline:scroll(root);}
+      .vpar{animation:vparScroll linear both;animation-timeline:view();animation-range:cover 0% cover 100%;}
+      /* en elementos bajos la fase "entry" dura apenas su alto:
+         con "cover" el recorrido se estira y la animación se ve */
+      .section h2,.cta h2{animation:clipIn linear both;animation-timeline:view();
+        animation-range:cover 4% cover 28%;}
+      .section .eyebrow::after{animation:lineIn linear both;animation-timeline:view();
+        animation-range:cover 2% cover 18%;}
+
+      .stagger > *{animation-range:cover 5% cover 33%;}
+      .stagger > *:nth-child(2){animation-range:cover 8% cover 36%;}
+      .stagger > *:nth-child(3){animation-range:cover 11% cover 39%;}
+      .stagger > *:nth-child(4){animation-range:cover 14% cover 42%;}
+      .stagger > *:nth-child(5){animation-range:cover 10% cover 38%;}
+      .stagger > *:nth-child(6){animation-range:cover 13% cover 41%;}
+
+      .grid-3.stagger > *{animation-name:tileIn;animation-range:cover 4% cover 36%;}
+      .grid-3.stagger > *:nth-child(2){animation-range:cover 9% cover 41%;}
+      .grid-3.stagger > *:nth-child(3){animation-range:cover 14% cover 46%;}
+
+      .item::after{animation:lineIn linear both;animation-timeline:view();
+        animation-range:cover 10% cover 40%;}
+      .item i{animation:dotPop cubic-bezier(.2,1.7,.4,1) both;animation-timeline:view();
+        animation-range:cover 12% cover 32%;}
+      .step::before{animation:lineIn linear both;animation-timeline:view();
+        animation-range:cover 8% cover 34%;}
+      .step:nth-child(2)::before{animation-range:cover 11% cover 37%;}
+      .step:nth-child(3)::before{animation-range:cover 14% cover 40%;}
+      .step:nth-child(4)::before{animation-range:cover 17% cover 43%;}
+      .step span{animation:numIn linear both;animation-timeline:view();
+        animation-range:cover 12% cover 38%;}
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress{scale:1 1;}
+    .hero h1 .w > span,.hero h1 .w > em{translate:none;rotate:none;opacity:1;}
+    .item::after,.step::before,.item i{scale:1;}
+    .section h2,.cta h2{clip-path:none;}
+    .section .eyebrow::after{scale:1 1;}
+  }
+</style>
+<style>
+  /* ajustes de la versión web */
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+  .form-success[hidden]{display:none;}
+  /* evita que el contenido ensanche las grillas de 1 columna en pantallas chicas */
+  @media (max-width:1024px){ .about-split{grid-template-columns:minmax(0,1fr);} }
+  .stackbar{overflow-x:clip;}
+</style>
+<link rel="stylesheet" href="css/landing-responsive.css">
+<noscript><style>.reveal,.stagger>*{opacity:1!important;transform:none!important;translate:none!important;clip-path:none!important;}</style></noscript>
+</head>
+<body>
+<div style="width: 100%; background: #0C0A11;">
+
+  <div class="topbar">
+    <a class="brand" href="index.html">
+      <img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
+      <span>Malama</span>
+    </a>
+    <a class="back" href="index.html"><span aria-hidden="true">←</span> Volver al inicio</a>
+    <span class="progress" aria-hidden="true"></span>
+  </div>
+
+  <section class="hero">
+    <div class="aurora" style="width: 560px; height: 560px; background: radial-gradient(circle, rgba(171,5,242,.40), transparent 65%); top: -220px; left: -140px;"></div>
+    <div class="aurora" style="width: 480px; height: 480px; background: radial-gradient(circle, rgba(35,217,183,.26), transparent 65%); bottom: -220px; right: -100px;"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow anim-1">Branding</p>
+        <h1 style="margin-top: 16px;"><span class="w"><span>Una</span></span> <span class="w"><span>identidad</span></span> <span class="w"><span>que</span></span> <span class="w"><em>se reconoce</em></span> <span class="w"><span>en</span></span> <span class="w"><span>todos</span></span> <span class="w"><span>lados</span></span></h1>
+        <p class="body anim-3" style="margin-top: 24px; max-width: 500px;">Creo el sistema visual completo de tu marca, del logo a la última pieza, para que se vea igual de bien en una web, en un local o en un posteo.</p>
+        <div class="hero-actions anim-4">
+          <a class="btn btn-primary" href="index.html#contacto">Contame tu proyecto</a>
+          <a class="btn btn-ghost" href="index.html">Volver al inicio</a>
+        </div>
+      </div>
+      <div class="visual anim-5">
+        <div class="vpar">
+        <div class="card" style="width: 340px; padding: 30px; left: 30px; top: 20px; --rot: -3deg;">
+          <img src="assets/045e8aa836b1b2bfb393e6b98e3b8e7f.svg" alt="" style="width: 160px; margin: 0 auto;">
+          <div style="display: flex; gap: 10px; justify-content: center; margin-top: 26px;">
+            <span style="width: 38px; height: 38px; border-radius: 50%; background: #AB05F2;"></span>
+            <span style="width: 38px; height: 38px; border-radius: 50%; background: #7D07F2;"></span>
+            <span style="width: 38px; height: 38px; border-radius: 50%; background: #5207F2;"></span>
+            <span style="width: 38px; height: 38px; border-radius: 50%; background: #23D9B7;"></span>
+            <span style="width: 38px; height: 38px; border-radius: 50%; background: #D7F205;"></span>
+          </div>
+        </div>
+        <div class="card" style="width: 150px; right: 6px; bottom: 26px; padding: 18px; --rot: 7deg; text-align: center;">
+          <span style="font: 600 44px 'Nunito', sans-serif; color: #F1F1F1;">Aa</span>
+          <p style="font: 400 13px 'Josefin Slab', serif; font-style: italic; color: #C5C5C5; margin-top: 6px;">digital</p>
+        </div></div></div>
+    </div>
+  </section>
+
+  <section class="section reveal band" style="background: #12101C; border-top: 1px solid rgba(241,241,241,.07); border-bottom: 1px solid rgba(241,241,241,.07);">
+    <div class="wrap">
+      <p class="eyebrow">Para quién es</p>
+      <h2 style="margin-top: 14px;">Si tu marca no termina de verse como querés.</h2>
+      <div class="grid-3 stagger"><div class="tile"><span style="width:10px;height:10px;border-radius:50%;background:#AB05F2;display:block;"></span><h3>Arrancás una marca</h3><p>Tenés el nombre y la idea, pero le falta la identidad.</p></div>
+        <div class="tile"><span style="width:10px;height:10px;border-radius:50%;background:#7D07F2;display:block;"></span><h3>Cada pieza es distinta</h3><p>Tu logo aparece de cinco maneras según quién lo haya usado.</p></div>
+        <div class="tile"><span style="width:10px;height:10px;border-radius:50%;background:#5207F2;display:block;"></span><h3>Creciste y quedó chica</h3><p>La identidad que armaste al principio ya no acompaña lo que sos hoy.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="wrap">
+      <p class="eyebrow">Qué incluye</p>
+      <h2 style="margin-top: 14px;">Un sistema completo, no solo un logo lindo.</h2>
+      <div class="grid-2 stagger"><div class="item"><i style="background:#AB05F2;"></i><p><strong>Logo y sus variantes.</strong> Versión principal, reducida y en un solo color, para cada contexto.</p></div>
+        <div class="item"><i style="background:#7D07F2;"></i><p><strong>Paleta y tipografías.</strong> Colores y tipos elegidos con criterio, con sus usos definidos.</p></div>
+        <div class="item"><i style="background:#5207F2;"></i><p><strong>Sistema de piezas.</strong> Plantillas para redes, presentaciones y material de venta.</p></div>
+        <div class="item"><i style="background:#23D9B7;"></i><p><strong>Manual de marca.</strong> Un documento claro con qué hacer y qué no, para que nadie improvise.</p></div>
+        <div class="item"><i style="background:#D7F205;"></i><p><strong>Aplicaciones.</strong> Papelería, packaging o cartelería, según lo que tu marca necesite.</p></div>
+        <div class="item"><i style="background:#AB05F2;"></i><p><strong>Archivos editables.</strong> Te entrego todo, en todos los formatos, y es tuyo.</p></div></div>
+    </div>
+  </section>
+
+
+  
+
+  <section class="section reveal" style="background-color: #12101C">
+    <div class="wrap">
+      <p class="eyebrow">Cómo trabajo</p>
+      <h2 style="margin-top: 14px;">Un proceso simple, para que sepas siempre en qué anda tu proyecto.</h2>
+      <div class="steps stagger"><div class="step"><span>01</span><h3>Descubrimiento</h3><p>Qué hace tu marca, a quién le habla y qué quiere transmitir.</p></div>
+        <div class="step"><span>02</span><h3>Concepto</h3><p>Propongo el camino visual antes de dibujar nada definitivo.</p></div>
+        <div class="step"><span>03</span><h3>Identidad</h3><p>Desarrollo logo, paleta, tipografías y piezas.</p></div>
+        <div class="step"><span>04</span><h3>Manual y entrega</h3><p>Te dejo todo ordenado y listo para usar en cualquier lado.</p></div></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
+    <h2>¿Le damos forma a tu marca?</h2>
+    <p>Contame en qué punto está tu identidad hoy y te escribo con los próximos pasos y una propuesta de alcance.</p>
+    <div class="cta-actions">
+      <a class="btn btn-on-gradient" href="index.html#contacto">Contame tu proyecto</a>
+      <a class="btn btn-outline-on-gradient" href="index.html">Volver al inicio</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p>© 2026 Malama Digital</p>
+    <a class="back" href="index.html"><span aria-hidden="true">←</span> Volver al inicio</a>
+  </div>
+
+</div>
+<script src="js/landing.js" defer></script>
+</body>
+</html>

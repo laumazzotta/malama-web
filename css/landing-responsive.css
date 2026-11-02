@@ -1,0 +1,40 @@
+/* Malama Digital — landings de servicios: layout fluido.
+   En el editor estas páginas estaban fijas en 1440px; acá se adaptan al ancho real. */
+
+@media (max-width: 1100px) {
+  .wrap { padding: 0 40px; }
+  .topbar { padding: 18px 40px; }
+  .cta { padding: 80px 40px; }
+  .foot { padding: 32px 40px; }
+
+  .hero { padding: 64px 0 72px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 60px); }
+  .visual { max-width: 520px; width: 100%; margin: 0 auto; }
+
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+  .section { padding: 72px 0; }
+  .section h2 { font-size: clamp(28px, 4.6vw, 38px); }
+  .cta h2 { font-size: clamp(32px, 5.4vw, 46px); }
+}
+
+@media (max-width: 720px) {
+  .wrap { padding: 0 20px; }
+  .topbar { padding: 14px 20px; gap: 12px; }
+  .brand span { font-size: 16px; }
+  .back { padding: 9px 14px; font-size: 12px; }
+  .cta { padding: 64px 20px; }
+  .cta img { width: 220px; right: -40px; bottom: -40px; }
+  .foot { padding: 28px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  .hero { padding: 48px 0 56px; }
+  .hero-actions .btn, .cta-actions .btn { width: 100%; }
+  .visual { zoom: .72; }
+
+  .grid-3, .grid-2 { grid-template-columns: 1fr; margin-top: 32px; }
+  .steps { grid-template-columns: 1fr; margin-top: 32px; }
+  .section { padding: 56px 0; }
+  .tile { padding: 24px; }
+  .body { font-size: 16px; line-height: 28px; }
+}
