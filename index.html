@@ -445,7 +445,7 @@
 <style>
   /* ---------- intro · diagnóstico (portada + 4 problemas, animados con scroll) ---------- */
   .dx{position:relative;z-index:1;}
-  .dx-portada{position:relative;height:420vh;--dx-p:0;}
+  .dx-portada{position:relative;height:420vh;height:420svh;--dx-p:0;}
   .dx-escena{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:72px 24px 24px;
     background:
       radial-gradient(1.5px 1.5px at 6% 31%,rgba(241,241,241,.35),transparent 100%),
@@ -471,14 +471,14 @@
   .dx-cue{font:600 12px/1 var(--font-display);letter-spacing:.08em;text-transform:uppercase;color:var(--gradient-teal);margin-top:26px;}
   .dx-portada.f1 .dx-sub,.dx-portada.f2 .dx-baja,.dx-portada.f3 .dx-cue{opacity:1;transform:none;}
 
-  .dx-orbe{position:fixed;left:0;top:0;width:13px;height:13px;border-radius:50%;z-index:60;pointer-events:none;opacity:0;transition:opacity .35s ease;will-change:transform;box-shadow:0 0 18px 2px currentColor;}
+  .dx-orbe{position:fixed;left:0;top:0;width:13px;height:13px;border-radius:50%;z-index:60;pointer-events:none;opacity:0;transition:opacity .35s ease;will-change:transform,opacity;backface-visibility:hidden;box-shadow:0 0 18px 2px currentColor;}
   .dx-orbe.visible{opacity:1;}
   .dx-orbe.o1{background:var(--gradient-magenta);color:rgba(171,5,242,.7);}
   .dx-orbe.o2{background:var(--gradient-violet);color:rgba(125,7,242,.7);}
   .dx-orbe.o3{background:var(--gradient-blue);color:rgba(82,7,242,.7);}
   .dx-orbe.o4{background:var(--gradient-teal);color:rgba(35,217,183,.7);}
 
-  .dx-paso{position:relative;height:230vh;background:radial-gradient(ellipse 50% 40% at 78% 50%,rgba(125,7,242,.10),transparent 70%);}
+  .dx-paso{position:relative;height:230vh;height:230svh;background:radial-gradient(ellipse 50% 40% at 78% 50%,rgba(125,7,242,.10),transparent 70%);}
   .dx-fijo{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-columns:96px minmax(0,.85fr) minmax(0,1fr);gap:32px;align-items:center;max-width:1240px;margin:0 auto;padding:72px 40px 24px;}
   .dx-ticks{display:flex;flex-direction:column;align-items:center;gap:40px;}
   .dx-ticks i{display:block;width:13px;height:13px;border-radius:50%;border:1.5px solid var(--line-strong);transition:border-color .4s ease;}

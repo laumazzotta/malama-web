@@ -92,8 +92,8 @@ export function initIntroDiagnostico() {
               escala = 1 - 0.31 * suave;
             }
 
-            orbe.style.transform = 'translate(' + (x - 6.5).toFixed(1) + 'px,'
-              + (y - 6.5).toFixed(1) + 'px) scale(' + escala.toFixed(3) + ')';
+            orbe.style.transform = 'translate3d(' + (x - 6.5).toFixed(1) + 'px,'
+              + (y - 6.5).toFixed(1) + 'px,0) scale(' + escala.toFixed(3) + ')';
             orbe.classList.toggle('visible', q > 0.10 && y > -30 && y < alto + 30);
           });
         }
@@ -119,6 +119,9 @@ export function initIntroDiagnostico() {
   };
 
   window.addEventListener('scroll', alScrollear, { passive: true });
+  // en iOS el scroll por inercia llega tarde: touchmove y visualViewport lo mantienen fluido
+  window.addEventListener('touchmove', alScrollear, { passive: true });
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', alScrollear);
   window.addEventListener('resize', alScrollear);
   medir();
 
@@ -126,6 +129,8 @@ export function initIntroDiagnostico() {
   return () => {
     if (pedido !== null) window.cancelAnimationFrame(pedido);
     window.removeEventListener('scroll', alScrollear);
+    window.removeEventListener('touchmove', alScrollear);
+    if (window.visualViewport) window.visualViewport.removeEventListener('resize', alScrollear);
     window.removeEventListener('resize', alScrollear);
   };
 }
