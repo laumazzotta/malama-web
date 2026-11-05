@@ -479,7 +479,7 @@
   .dx-orbe.o4{background:var(--gradient-teal);color:rgba(35,217,183,.7);}
 
   .dx-paso{position:relative;height:230vh;height:230svh;background:radial-gradient(ellipse 50% 40% at 78% 50%,rgba(125,7,242,.10),transparent 70%);}
-  .dx-fijo{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-columns:96px minmax(0,.85fr) minmax(0,1fr);gap:32px;align-items:center;max-width:1240px;margin:0 auto;padding:72px 40px 24px;}
+  .dx-fijo{position:sticky;top:var(--nav-h,0px);height:calc(100vh - var(--nav-h,0px));height:calc(100svh - var(--nav-h,0px));box-sizing:border-box;display:grid;grid-template-columns:96px minmax(0,.85fr) minmax(0,1fr);gap:32px;align-items:center;max-width:1240px;margin:0 auto;padding:24px 40px;}
   .dx-ticks{display:flex;flex-direction:column;align-items:center;gap:40px;}
   .dx-ticks i{display:block;width:13px;height:13px;border-radius:50%;border:1.5px solid var(--line-strong);transition:border-color .4s ease;}
   .dx-paso.revelado .dx-ticks i.on{border-color:transparent;}
@@ -541,7 +541,7 @@
   .ilu-brand .aa span{font-family:var(--font-accent);font-weight:400;margin-left:8px;color:var(--ink-on-gradient-secondary);}
 
   @media (max-width:900px){
-    .dx-fijo{grid-template-columns:36px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;row-gap:20px;column-gap:12px;padding:72px 20px 24px;}
+    .dx-fijo{grid-template-columns:36px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;row-gap:20px;column-gap:12px;padding:16px 20px;}
     .dx-ticks{grid-row:1 / span 2;gap:28px;align-self:center;}
     .dx-sol{grid-column:2;padding:20px;transform:translateY(40px);clip-path:inset(100% 0 0 0 round 20px);}
     .dx-ilu{height:96px;margin-top:14px;padding:12px;}

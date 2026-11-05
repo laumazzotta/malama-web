@@ -9,6 +9,14 @@
    se inicialice solo al cargar el DOM (ver el final del archivo).        */
 
 export function initIntroDiagnostico() {
+  // altura del navbar fijo: los pasos se centran en el espacio que queda debajo
+  const nav = document.querySelector('.nav');
+  const medirNav = () => {
+    if (nav) document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  };
+  medirNav();
+  window.addEventListener('resize', medirNav);
+
   const reducido = window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducido) return () => {};
