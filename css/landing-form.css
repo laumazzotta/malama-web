@@ -1,0 +1,26 @@
+/* Formulario de contacto dentro del bloque CTA de las landings de servicios */
+.cta .form-card{position:relative;z-index:1;max-width:720px;margin:40px auto 0;text-align:left;background:var(--ground-2);border:1px solid var(--line);border-radius:20px;padding:40px;overflow:hidden;}
+.cta .form-card::before{content:"";position:absolute;top:-80px;left:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(82,7,242,.35),transparent 65%);pointer-events:none;}
+.cta .field{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.cta .field label{font:600 13px var(--display);color:var(--text);}
+.cta .field input,.cta .field select,.cta .field textarea{border:1.5px solid rgba(241,241,241,.24);border-radius:12px;padding:13px 16px;font:400 15px var(--display);color:var(--text);background:rgba(12,10,17,.6);transition:border-color .25s ease,box-shadow .25s ease,background .25s ease;}
+.cta .field input::placeholder,.cta .field textarea::placeholder{color:rgba(197,197,197,.55);}
+.cta .field input:focus,.cta .field select:focus,.cta .field textarea:focus{outline:none;border-color:var(--teal);background:rgba(12,10,17,.9);box-shadow:0 0 0 4px rgba(35,217,183,.18);}
+.cta .field textarea{resize:vertical;min-height:110px;}
+.cta .field-row{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.cta .form-actions{position:relative;z-index:1;display:flex;gap:12px;}
+.cta .form-actions .btn{flex:1 1 0;min-width:0;padding-left:16px;padding-right:16px;cursor:pointer;}
+.cta .form-actions .btn:disabled{opacity:.6;cursor:default;}
+.cta .form-error{position:relative;z-index:1;margin:0 0 16px;font-weight:600;font-size:14px;line-height:22px;color:#FF9B9B;max-width:none;}
+.cta .form-error a{text-decoration:underline;}
+.cta .form-success{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:24px 4px;}
+.cta .form-success .check{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--teal));display:flex;align-items:center;justify-content:center;color:var(--text);font-size:22px;box-shadow:0 0 30px rgba(35,217,183,.6);}
+.cta .form-success h3{font-size:20px;}
+.cta .form-success p{margin:0;max-width:none;color:var(--text-2);font:400 15px/24px var(--display);}
+.cta [hidden]{display:none!important;}
+.cta .cta-actions{margin-top:28px;}
+@media (max-width:720px){
+  .cta .form-card{padding:28px 20px;}
+  .cta .field-row{grid-template-columns:1fr;gap:0;}
+  .cta .form-actions{flex-direction:column;}
+}

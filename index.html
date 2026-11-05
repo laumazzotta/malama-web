@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0C0A11">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Malama Digital: estudio de diseño y desarrollo web, e-commerce, email marketing y branding.">
 <meta property="og:title" content="Malama Digital — Diseño web, e-commerce, email marketing y branding">
 <meta property="og:description" content="Malama Digital: estudio de diseño y desarrollo web, e-commerce, email marketing y branding.">
@@ -438,7 +442,133 @@
   @media (max-width:1024px){ .about-split{grid-template-columns:minmax(0,1fr);} }
   .stackbar{overflow-x:clip;}
 </style>
+<style>
+  /* ---------- intro · diagnóstico (portada + 4 problemas, animados con scroll) ---------- */
+  .dx{position:relative;z-index:1;}
+  .dx-portada{position:relative;height:420vh;--dx-p:0;}
+  .dx-escena{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:72px 24px 24px;
+    background:
+      radial-gradient(1.5px 1.5px at 6% 31%,rgba(241,241,241,.35),transparent 100%),
+      radial-gradient(1.5px 1.5px at 32% 14%,rgba(241,241,241,.3),transparent 100%),
+      radial-gradient(1.5px 1.5px at 66% 20%,rgba(241,241,241,.3),transparent 100%),
+      radial-gradient(1.5px 1.5px at 94% 33%,rgba(241,241,241,.3),transparent 100%),
+      radial-gradient(1.5px 1.5px at 16% 68%,rgba(241,241,241,.3),transparent 100%),
+      radial-gradient(1.5px 1.5px at 84% 62%,rgba(241,241,241,.3),transparent 100%),
+      radial-gradient(1.5px 1.5px at 52% 83%,rgba(241,241,241,.3),transparent 100%),
+      radial-gradient(ellipse 52% 58% at 50% 52%,rgba(125,7,242,.30),rgba(82,7,242,.10) 55%,transparent 80%);}
+  .dx-aro{position:absolute;left:50%;top:50%;width:min(80vmin,680px);height:auto;transform:translate(-50%,-50%) rotate(-90deg);pointer-events:none;}
+  .dx-aro circle{stroke-dasharray:1684;stroke-dashoffset:1684;}
+  .dx-centro{position:relative;z-index:1;text-align:center;width:100%;max-width:1180px;}
+  .dx-centro h2{font-size:clamp(32px,5.4vw,78px);line-height:1.08;letter-spacing:-.025em;text-wrap:balance;}
+  /* arranca todo en blanco; el degradé se va pintando con el scroll y queda */
+  .dx-centro h2 em{font-style:normal;display:inline-block;white-space:nowrap;-webkit-background-clip:text;background-clip:text;color:transparent;
+    background-image:var(--brand-gradient),linear-gradient(var(--ink-on-gradient),var(--ink-on-gradient));
+    background-repeat:no-repeat;
+    background-size:min(100%,calc(var(--dx-p) * 380%)) 100%,100% 100%;}
+  .dx-sub,.dx-baja,.dx-cue{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;margin-left:auto;margin-right:auto;}
+  .dx-sub{font:600 clamp(18px,2.6vmin,24px)/1.35 var(--font-display);margin-top:28px;max-width:560px;color:var(--ink-on-gradient);}
+  .dx-baja{font:400 clamp(14px,2.2vmin,17px)/1.55 var(--font-body);color:var(--ink-on-gradient-secondary);margin-top:14px;max-width:520px;}
+  .dx-cue{font:600 12px/1 var(--font-display);letter-spacing:.08em;text-transform:uppercase;color:var(--gradient-teal);margin-top:26px;}
+  .dx-portada.f1 .dx-sub,.dx-portada.f2 .dx-baja,.dx-portada.f3 .dx-cue{opacity:1;transform:none;}
+
+  .dx-orbe{position:fixed;left:0;top:0;width:13px;height:13px;border-radius:50%;z-index:60;pointer-events:none;opacity:0;transition:opacity .35s ease;will-change:transform;box-shadow:0 0 18px 2px currentColor;}
+  .dx-orbe.visible{opacity:1;}
+  .dx-orbe.o1{background:var(--gradient-magenta);color:rgba(171,5,242,.7);}
+  .dx-orbe.o2{background:var(--gradient-violet);color:rgba(125,7,242,.7);}
+  .dx-orbe.o3{background:var(--gradient-blue);color:rgba(82,7,242,.7);}
+  .dx-orbe.o4{background:var(--gradient-teal);color:rgba(35,217,183,.7);}
+
+  .dx-paso{position:relative;height:230vh;background:radial-gradient(ellipse 50% 40% at 78% 50%,rgba(125,7,242,.10),transparent 70%);}
+  .dx-fijo{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-columns:96px minmax(0,.85fr) minmax(0,1fr);gap:32px;align-items:center;max-width:1240px;margin:0 auto;padding:72px 40px 24px;}
+  .dx-ticks{display:flex;flex-direction:column;align-items:center;gap:40px;}
+  .dx-ticks i{display:block;width:13px;height:13px;border-radius:50%;border:1.5px solid var(--line-strong);transition:border-color .4s ease;}
+  .dx-paso.revelado .dx-ticks i.on{border-color:transparent;}
+  .dx-prob{transition:transform .7s cubic-bezier(.2,.8,.2,1);}
+  .dx-paso.revelado .dx-prob{transform:translateY(-28px);}
+  .dx-num{font:400 clamp(18px,2vw,24px)/1 var(--font-accent);color:var(--gradient-teal);letter-spacing:.1em;margin-bottom:14px;}
+  .dx-prob h3{font-size:clamp(28px,3.6vw,52px);line-height:1.1;letter-spacing:-.02em;}
+  .dx-det{font:400 clamp(15px,1.4vw,18px)/1.6 var(--font-body);color:var(--ink-on-gradient-secondary);margin-top:16px;max-width:440px;}
+  .dx-raya{display:block;height:2px;width:0;margin-top:26px;border-radius:2px;background:linear-gradient(90deg,var(--gradient-violet),var(--gradient-teal));transition:width .9s cubic-bezier(.2,.8,.2,1) .15s;}
+  .dx-paso.revelado .dx-raya{width:88px;}
+
+  /* tarjeta de la solución: entra desde la derecha */
+  .dx-sol{padding:28px;border:1px solid var(--line);border-radius:var(--radius-md);background:linear-gradient(160deg,rgba(27,23,39,.92),rgba(20,17,32,.92));box-shadow:0 40px 80px -40px rgba(0,0,0,.9),0 0 0 1px rgba(125,7,242,.08);
+    opacity:0;transform:translateX(70px);clip-path:inset(0 0 0 100% round 20px);transition:opacity .6s ease, transform .9s cubic-bezier(.2,.8,.2,1), clip-path .9s cubic-bezier(.2,.8,.2,1);}
+  .dx-paso.revelado .dx-sol{opacity:1;transform:none;clip-path:inset(0 0 0 0 round 20px);}
+  .dx-sol .eyebrow{margin-bottom:12px;font-size:12px;}
+  .dx-sol h4{font:600 clamp(20px,2vw,27px)/1.2 var(--font-display);margin:0;color:var(--ink-on-gradient);}
+  .dx-sol p.dx-txt{font:400 15px/1.6 var(--font-body);color:var(--ink-on-gradient-secondary);margin-top:12px;}
+  .dx-sol .link-arrow{display:inline-block;margin-top:20px;font-size:12px;}
+
+  /* ilustraciones: arrancan cuando se revela la solución */
+  .dx-ilu{position:relative;margin-top:20px;height:128px;border-radius:14px;border:1px solid var(--line);background:rgba(12,10,17,.6);padding:16px;overflow:hidden;}
+  .dx-ilu *{animation-delay:var(--d,0s);}
+  .dx-paso.revelado .dx-ilu .g{animation:dxGrow .9s cubic-bezier(.2,.8,.2,1) both;transform-origin:0 50%;}
+  .dx-paso.revelado .dx-ilu .r{animation:dxRise .7s cubic-bezier(.2,.8,.2,1) both;}
+  .dx-paso.revelado .dx-ilu .p{animation:dxPop .6s cubic-bezier(.3,1.6,.5,1) both;}
+  .dx-paso.revelado .dx-ilu .s{animation:dxSlide .7s cubic-bezier(.2,.8,.2,1) both;}
+  @keyframes dxGrow{from{transform:scaleX(0);opacity:.2;}to{transform:none;opacity:1;}}
+  @keyframes dxRise{from{transform:translateY(22px);opacity:0;}to{transform:none;opacity:1;}}
+  @keyframes dxPop{from{transform:scale(0);opacity:0;}to{transform:none;opacity:1;}}
+  @keyframes dxSlide{from{transform:translateX(40px);opacity:0;}to{transform:none;opacity:1;}}
+  .dx-ilu .ln{height:6px;border-radius:4px;background:rgba(241,241,241,.14);}
+  /* web */
+  .ilu-web .hero-bar{width:68%;height:42px;border-radius:10px;background:linear-gradient(110deg,var(--gradient-magenta),var(--gradient-blue) 60%,var(--gradient-teal));}
+  .ilu-web .side{position:absolute;right:16px;top:16px;width:20%;height:56px;border-radius:10px;background:rgba(82,7,242,.18);border:1px solid var(--line);}
+  .ilu-web .ln{margin-top:12px;} .ilu-web .ln.b{width:52%;}
+  .ilu-web .cta{position:absolute;right:16px;bottom:16px;width:64px;height:20px;border-radius:99px;background:var(--gradient-lime);}
+  /* e-commerce */
+  .ilu-shop{display:flex;gap:12px;align-items:flex-end;}
+  .ilu-shop .it{flex:1;height:100%;border-radius:10px;border:1px solid var(--line);padding:8px;display:flex;flex-direction:column;gap:6px;background:rgba(241,241,241,.03);}
+  .ilu-shop .it b{flex:1;border-radius:6px;}
+  .ilu-shop .it:nth-child(1) b{background:linear-gradient(140deg,var(--gradient-magenta),var(--gradient-violet));}
+  .ilu-shop .it:nth-child(2) b{background:linear-gradient(140deg,var(--gradient-violet),var(--gradient-blue));}
+  .ilu-shop .it:nth-child(3) b{background:linear-gradient(140deg,var(--gradient-blue),var(--gradient-teal));}
+  .ilu-shop .cart{position:absolute;right:14px;top:12px;font:600 11px/1 var(--font-display);letter-spacing:.04em;padding:7px 11px;border-radius:99px;background:var(--gradient-teal);color:#0C0A11;}
+  /* email */
+  .ilu-mail .row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:9px;border:1px solid var(--line);background:rgba(241,241,241,.03);margin-bottom:8px;}
+  .ilu-mail .row i{width:14px;height:14px;border-radius:50%;flex:none;}
+  .ilu-mail .row:nth-child(1) i{background:var(--gradient-magenta);} .ilu-mail .row:nth-child(2) i{background:var(--gradient-blue);} .ilu-mail .row:nth-child(3) i{background:var(--gradient-teal);}
+  .ilu-mail .row .ln{flex:1;} .ilu-mail .row .ln + .ln{flex:.5;}
+  .ilu-mail .bdg{position:absolute;right:12px;top:10px;width:22px;height:22px;border-radius:50%;background:var(--gradient-lime);color:#0C0A11;font:700 12px/22px var(--font-display);text-align:center;}
+  /* branding */
+  .ilu-brand{display:flex;align-items:center;gap:18px;}
+  .ilu-brand .logo{width:72px;height:72px;border-radius:50%;flex:none;background:conic-gradient(from 200deg,var(--gradient-magenta),var(--gradient-violet),var(--gradient-blue),var(--gradient-teal),var(--gradient-lime),var(--gradient-magenta));}
+  .ilu-brand .col{display:flex;flex-direction:column;gap:12px;}
+  .ilu-brand .sw{display:flex;gap:8px;}
+  .ilu-brand .sw i{width:26px;height:26px;border-radius:8px;}
+  .ilu-brand .aa{font:600 26px/1 var(--font-display);color:var(--ink-on-gradient);}
+  .ilu-brand .aa span{font-family:var(--font-accent);font-weight:400;margin-left:8px;color:var(--ink-on-gradient-secondary);}
+
+  @media (max-width:900px){
+    .dx-fijo{grid-template-columns:36px minmax(0,1fr);grid-template-rows:auto auto;align-content:center;row-gap:20px;column-gap:12px;padding:72px 20px 24px;}
+    .dx-ticks{grid-row:1 / span 2;gap:28px;align-self:center;}
+    .dx-sol{grid-column:2;padding:20px;transform:translateY(40px);clip-path:inset(100% 0 0 0 round 20px);}
+    .dx-ilu{height:96px;margin-top:14px;padding:12px;}
+    .dx-paso.revelado .dx-prob{transform:translateY(-8px);}
+    .dx-raya{margin-top:16px;}
+    .dx-det{margin-top:10px;}
+  }
+  @media (max-width:720px){
+    .dx-escena{padding:72px 16px 16px;}
+    .dx-aro{width:min(94vw,520px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .dx-portada{--dx-p:1;}
+    .dx-portada,.dx-paso{height:auto;}
+    .dx-escena,.dx-fijo{position:static;height:auto;min-height:0;}
+    .dx-escena{padding:112px 24px 64px;}
+    .dx-aro circle{stroke-dashoffset:0;}
+    .dx-orbe,.dx-ticks{display:none;}
+    .dx-sub,.dx-baja,.dx-cue{opacity:1;transform:none;}
+    .dx-sol{opacity:1;transform:none;clip-path:none;}
+    .dx-raya{width:88px;}
+    .dx-fijo{grid-template-columns:minmax(0,1fr);padding-top:64px;padding-bottom:64px;}
+    .dx-sol{grid-column:auto;}
+  }
+</style>
 <noscript><style>.reveal,.stagger>*{opacity:1!important;transform:none!important;translate:none!important;clip-path:none!important;}</style></noscript>
+<link rel="stylesheet" href="css/nav-dropdown.css">
 </head>
 <body>
 <div class="page">
@@ -450,7 +580,7 @@
       <img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
       <span>Malama</span>
     </a>
-    <div class="nav-links"><a href="#servicios">Servicios</a>
+    <div class="nav-links"><div class="nav-dd"><a class="nav-dd-trigger" href="#servicios" aria-haspopup="true" aria-expanded="false">Servicios <svg class="nav-dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd-menu"><div class="nav-dd-menu-inner"><a href="diseno-web.html">Diseño y desarrollo web</a><a href="ecommerce.html">E-commerce</a><a href="email-marketing.html">Email marketing</a><a href="branding.html">Branding</a><a href="hoteleria.html">Soluciones para hotelería</a></div></div></div>
       <a href="#nosotros">Sobre mí</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#contacto">Contacto</a>
@@ -466,7 +596,7 @@
       <button class="mobile-menu-close" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="mobile-menu-links">
-      <a href="#servicios" data-menu-close>Servicios</a>
+      <button class="mobile-menu-dd-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu-sub">Servicios <svg class="nav-dd-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="mobile-menu-sub" id="mobile-menu-sub"><div class="mobile-menu-sub-inner"><a href="diseno-web.html" data-menu-close>Diseño y desarrollo web</a><a href="ecommerce.html" data-menu-close>E-commerce</a><a href="email-marketing.html" data-menu-close>Email marketing</a><a href="branding.html" data-menu-close>Branding</a><a href="hoteleria.html" data-menu-close>Soluciones para hotelería</a><a href="#servicios" data-menu-close>Ver todos los servicios</a></div></div>
       <a href="#nosotros" data-menu-close>Sobre mí</a>
       <a href="#trabajos" data-menu-close>Trabajos</a>
       <a href="#contacto" data-menu-close>Contacto</a>
@@ -550,9 +680,117 @@
     </div>
   </div>
 
+  <div class="dx" id="diagnostico">
+    <section class="dx-portada" data-dx-portada aria-labelledby="dx-titulo">
+      <div class="dx-escena">
+        <svg class="dx-aro" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="dxAroGrad" x1="0" y1="0" x2="600" y2="600" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#AB05F2"></stop>
+              <stop offset="0.25" stop-color="#7D07F2"></stop>
+              <stop offset="0.5" stop-color="#5207F2"></stop>
+              <stop offset="0.78" stop-color="#23D9B7"></stop>
+              <stop offset="1" stop-color="#D7F205"></stop>
+            </linearGradient>
+          </defs>
+          <circle cx="300" cy="300" r="268" stroke="url(#dxAroGrad)" stroke-width="2" stroke-linecap="round"></circle>
+        </svg>
+        <div class="dx-centro">
+          <!-- <p class="eyebrow">Diagnóstico</p> -->
+          <h2 id="dx-titulo">Si tu marca no está online, <em>no existe.</em></h2>
+          <p class="dx-sub">Cada búsqueda en la que no aparecés es un cliente que se va con otro.</p>
+          <!-- <p class="dx-baja">Estar online no es solo aparecer: es que te encuentren y confíen en lo que ven.</p> -->
+          <p class="dx-baja">Si te identificás con alguno de estos problemas, te ayudo a solucionarlo.</p>
+          <p class="dx-cue">Seguí bajando ↓</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="dx-paso" data-dx-paso aria-labelledby="dx-p1">
+      <div class="dx-fijo">
+        <div class="dx-ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="dx-prob">
+          <p class="dx-num">01</p>
+          <h3 id="dx-p1">No tenés sitio web, o quedó viejo.</h3>
+          <p class="dx-det">Te buscan pero no te encuentran, el sitio se ve desactualizado, tarda en cargar o no se entiende. Quien llega, se va sin escribirte.</p>
+          <span class="dx-raya"></span>
+        </div>
+        <div class="dx-sol">
+          <p class="eyebrow">Diseño y desarrollo web</p>
+          <h4>Te armo el sitio que tu proyecto necesita.</h4>
+          <p class="dx-txt">De la estructura a la salida al aire: diseño a medida, prototipo antes de construir y un sitio liviano que se ve bien en cualquier pantalla.</p>
+          <div class="dx-ilu ilu-web" aria-hidden="true"><div class="hero-bar g"></div><div class="side r" style="--d:.25s"></div><div class="ln r" style="--d:.35s;width:70%"></div><div class="ln b r" style="--d:.45s"></div><div class="cta p" style="--d:.7s"></div></div>
+          <a class="link-arrow" href="diseno-web.html">Ver el servicio ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dx-paso" data-dx-paso aria-labelledby="dx-p2">
+      <div class="dx-fijo">
+        <div class="dx-ticks" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i></div>
+        <div class="dx-prob">
+          <p class="dx-num">02</p>
+          <h3 id="dx-p2">Visitan tu tienda y no compran.</h3>
+          <p class="dx-det">El proceso de compra tiene fricción y los clientes no confían. O vendés por catálogo y se te va el día pasando precios por mensaje.</p>
+          <span class="dx-raya"></span>
+        </div>
+        <div class="dx-sol">
+          <p class="eyebrow">E-commerce</p>
+          <h4>Una tienda ordenada que vende.</h4>
+          <p class="dx-txt">Catálogo claro, checkout simple y medios de pago integrados para que cada visita tenga un camino directo a la compra.</p>
+          <div class="dx-ilu ilu-shop" aria-hidden="true"><div class="it r" style="--d:.1s"><b></b><div class="ln"></div></div><div class="it r" style="--d:.25s"><b></b><div class="ln"></div></div><div class="it r" style="--d:.4s"><b></b><div class="ln"></div></div><span class="cart p" style="--d:.8s">Carrito · 3</span></div>
+          <a class="link-arrow" href="ecommerce.html">Ver el servicio ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dx-paso" data-dx-paso aria-labelledby="dx-p3">
+      <div class="dx-fijo">
+        <div class="dx-ticks" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i></div>
+        <div class="dx-prob">
+          <p class="dx-num">03</p>
+          <h3 id="dx-p3">Compran una vez y no vuelven.</h3>
+          <p class="dx-det">Tenés cientos de contactos pero no hay conversación. Cada cliente nuevo cuesta lo mismo que el anterior.</p>
+          <span class="dx-raya"></span>
+        </div>
+        <div class="dx-sol">
+          <p class="eyebrow">Email marketing</p>
+          <h4>Que tus clientes vuelvan solos.</h4>
+          <p class="dx-txt">Campañas y automatizaciones que mantienen el vínculo: bienvenida, carritos abandonados y novedades en el momento justo.</p>
+          <div class="dx-ilu ilu-mail" aria-hidden="true"><div class="row s" style="--d:.1s"><i></i><span class="ln"></span><span class="ln"></span></div><div class="row s" style="--d:.28s"><i></i><span class="ln"></span><span class="ln"></span></div><div class="row s" style="--d:.46s"><i></i><span class="ln"></span><span class="ln"></span></div><span class="bdg p" style="--d:.8s">1</span></div>
+          <a class="link-arrow" href="email-marketing.html">Ver el servicio ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dx-paso" data-dx-paso aria-labelledby="dx-p4">
+      <div class="dx-fijo">
+        <div class="dx-ticks" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i></div>
+        <div class="dx-prob">
+          <p class="dx-num">04</p>
+          <h3 id="dx-p4">Tu marca no se reconoce.</h3>
+          <p class="dx-det">Logo, colores y tono cambian según dónde te vean. Cada pieza parece de alguien distinto y cuesta recordarte.</p>
+          <span class="dx-raya"></span>
+        </div>
+        <div class="dx-sol">
+          <p class="eyebrow">Branding</p>
+          <h4>Una identidad que se reconoce.</h4>
+          <p class="dx-txt">Logo, paleta, tipografías y una guía para usarlos igual en todos lados, del perfil de redes a la web.</p>
+          <div class="dx-ilu ilu-brand" aria-hidden="true"><div class="logo p"></div><div class="col"><div class="sw"><i class="p" style="--d:.25s;background:var(--gradient-magenta)"></i><i class="p" style="--d:.35s;background:var(--gradient-violet)"></i><i class="p" style="--d:.45s;background:var(--gradient-blue)"></i><i class="p" style="--d:.55s;background:var(--gradient-teal)"></i><i class="p" style="--d:.65s;background:var(--gradient-lime)"></i></div><div class="aa r" style="--d:.8s">Aa<span>Aa</span></div></div></div>
+          <a class="link-arrow" href="branding.html">Ver el servicio ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <span class="dx-orbe o1" aria-hidden="true"></span>
+    <span class="dx-orbe o2" aria-hidden="true"></span>
+    <span class="dx-orbe o3" aria-hidden="true"></span>
+    <span class="dx-orbe o4" aria-hidden="true"></span>
+  </div>
+
   <section class="section reveal" id="servicios">
     <p class="eyebrow">Servicios</p>
-    <h2 class="h2-lg" style="max-width:640px;">Hagamos que tu marca la rompa online.</h2>
+    <h2 class="h2-lg" style="max-width:640px;">Construimos la presencia digital que tu negocio necesita</h2>
     <div class="service-grid stagger">
       <div class="service-card">
         <div class="service-icon">
@@ -827,10 +1065,10 @@
         </div>
         <p class="footer-tag">Tu marca, bien parada en internet.</p>
         <div class="social-row" style="margin-top:24px;">
-          <a class="social-icon" href="#" aria-label="Instagram">
+          <a class="social-icon" href="https://www.instagram.com/malama.digital/" target="_blank" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
           </a>
-          <a class="social-icon" href="#" aria-label="LinkedIn">
+          <a class="social-icon" href="https://www.linkedin.com/company/malamadigital" target="_blank" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><line x1="7.5" y1="10" x2="7.5" y2="16.5"></line><circle cx="7.5" cy="7" r="0.9" fill="currentColor" stroke="none"></circle><path d="M11.5 16.5V10"></path><path d="M11.5 12.8c0-1.6 1.2-2.8 2.6-2.8s2.4 1 2.4 2.8v3.7"></path></svg>
           </a>
           <a class="social-icon" href="https://wa.me/5491124005587?text=Hola%21%20Quer%C3%ADa%20consultarte%20por%20un%20proyecto." target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -866,5 +1104,7 @@
 
 </div>
 <script src="js/home.js" defer></script>
+<script type="module" src="js/intro-diagnostico.js"></script>
+<script src="js/nav-dropdown.js"></script>
 </body>
 </html>

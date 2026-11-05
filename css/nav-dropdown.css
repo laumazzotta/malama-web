@@ -1,0 +1,26 @@
+/* Desplegable de Servicios en el nav (escritorio) y acordeón en el menú móvil */
+.nav-dd{position:relative;display:flex;align-items:center;}
+.nav-links .nav-dd-trigger{display:inline-flex;align-items:center;gap:6px;}
+.nav-dd-chev{transition:transform .25s ease;flex:none;}
+.nav-dd.open .nav-dd-chev,.nav-dd:hover .nav-dd-chev,.nav-dd:focus-within .nav-dd-chev{transform:rotate(180deg);}
+.nav-dd-menu{position:absolute;top:100%;left:-18px;min-width:260px;padding:14px 8px 8px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:75;}
+.nav-dd-menu-inner{display:flex;flex-direction:column;padding:8px;border:1px solid var(--line);border-radius:16px;background:rgba(12,10,17,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 24px 50px -24px rgba(125,7,242,.8);}
+.nav-dd:hover .nav-dd-menu,.nav-dd:focus-within .nav-dd-menu,.nav-dd.open .nav-dd-menu{opacity:1;visibility:visible;transform:none;}
+.nav-links .nav-dd-menu a{display:block;padding:10px 14px;border-radius:10px;white-space:nowrap;transition:background .2s ease,color .2s ease;}
+.nav-links .nav-dd-menu a::after{display:none;}
+.nav-links .nav-dd-menu a:hover,.nav-links .nav-dd-menu a:focus-visible{background:rgba(255,255,255,.07);color:var(--ink-on-gradient);}
+
+.mobile-menu-dd-toggle{display:none;}
+@media (max-width:720px){
+  .mobile-menu-dd-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 0;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink-on-gradient);font:600 24px var(--font-display);text-align:left;cursor:pointer;}
+  .mobile-menu-dd-toggle svg{transition:transform .25s ease;}
+  .mobile-menu-dd-toggle[aria-expanded="true"] svg{transform:rotate(180deg);}
+  .mobile-menu-sub{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s ease;}
+  .mobile-menu-sub.open{grid-template-rows:1fr;}
+  .mobile-menu-sub-inner{overflow:hidden;display:flex;flex-direction:column;}
+  .mobile-menu-links .mobile-menu-sub a{font-size:18px;font-weight:600;color:var(--ink-on-gradient-secondary);padding:13px 0 13px 18px;}
+  .mobile-menu-sub:not(.open) a{visibility:hidden;}
+}
+@media (prefers-reduced-motion:reduce){
+  .nav-dd-menu,.nav-dd-chev,.mobile-menu-sub,.mobile-menu-dd-toggle svg{transition:none;}
+}

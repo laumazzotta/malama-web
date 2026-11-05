@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0C0A11">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Diseño y desarrollo de sitios web a medida con Malama Digital.">
 <meta property="og:title" content="Diseño y desarrollo web · Malama Digital">
 <meta property="og:description" content="Diseño y desarrollo de sitios web a medida con Malama Digital.">
@@ -315,7 +319,9 @@
 </style>
 <link rel="stylesheet" href="css/landing-responsive.css">
 <link rel="stylesheet" href="css/site-chrome.css">
+<link rel="stylesheet" href="css/landing-form.css">
 <noscript><style>.reveal,.stagger>*{opacity:1!important;transform:none!important;translate:none!important;clip-path:none!important;}</style></noscript>
+<link rel="stylesheet" href="css/nav-dropdown.css">
 </head>
 <body>
 <div style="width: 100%; background: #0C0A11;">
@@ -325,7 +331,7 @@
       <img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
       <span>Malama</span>
     </a>
-    <div class="nav-links"><a href="index.html#servicios">Servicios</a>
+    <div class="nav-links"><div class="nav-dd"><a class="nav-dd-trigger" href="index.html#servicios" aria-haspopup="true" aria-expanded="false">Servicios <svg class="nav-dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd-menu"><div class="nav-dd-menu-inner"><a href="diseno-web.html">Diseño y desarrollo web</a><a href="ecommerce.html">E-commerce</a><a href="email-marketing.html">Email marketing</a><a href="branding.html">Branding</a><a href="hoteleria.html">Soluciones para hotelería</a></div></div></div>
       <a href="index.html#nosotros">Sobre mí</a>
       <a href="index.html#trabajos">Trabajos</a>
       <a href="index.html#contacto">Contacto</a>
@@ -342,7 +348,7 @@
       <button class="mobile-menu-close" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="mobile-menu-links">
-      <a href="index.html#servicios" data-menu-close>Servicios</a>
+      <button class="mobile-menu-dd-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu-sub">Servicios <svg class="nav-dd-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="mobile-menu-sub" id="mobile-menu-sub"><div class="mobile-menu-sub-inner"><a href="diseno-web.html" data-menu-close>Diseño y desarrollo web</a><a href="ecommerce.html" data-menu-close>E-commerce</a><a href="email-marketing.html" data-menu-close>Email marketing</a><a href="branding.html" data-menu-close>Branding</a><a href="hoteleria.html" data-menu-close>Soluciones para hotelería</a><a href="index.html#servicios" data-menu-close>Ver todos los servicios</a></div></div>
       <a href="index.html#nosotros" data-menu-close>Sobre mí</a>
       <a href="index.html#trabajos" data-menu-close>Trabajos</a>
       <a href="index.html#contacto" data-menu-close>Contacto</a>
@@ -435,12 +441,52 @@
     </div>
   </section>
 
-  <section class="cta">
+  <section class="cta" id="contacto">
     <img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
     <h2>¿Arrancamos con tu sitio?</h2>
     <p>Contame qué necesitás y te escribo con los próximos pasos y una propuesta de alcance.</p>
+    <div class="form-card">
+      <form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama">
+        <p hidden><label>No completar este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field-row">
+          <div class="field">
+            <label for="d-nombre">Nombre</label>
+            <input id="d-nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="d-email">Email</label>
+            <input id="d-email" name="email" type="email" placeholder="tu@email.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="d-tipo">Tipo de proyecto</label>
+          <select id="d-tipo" name="tipo">
+            <option selected>Sitio web</option>
+            <option>E-commerce</option>
+            <option>Email marketing</option>
+            <option>Branding</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="d-mensaje">Mensaje</label>
+          <textarea id="d-mensaje" name="mensaje" placeholder="Contame un poco qué necesitás..." required></textarea>
+        </div>
+        <p class="form-error" id="form-error" role="alert" hidden>No pudimos enviar tu mensaje. Probá de nuevo o escribinos a <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
+        <div class="form-actions">
+          <button class="btn btn-on-gradient" type="submit" name="canal" value="mail">ENVIAR POR MAIL</button>
+          <button class="btn btn-outline-on-gradient" type="submit" name="canal" value="whatsapp">ENVIAR POR WHATSAPP</button>
+        </div>
+      </form>
+      <div class="form-success" id="form-success" hidden>
+        <span class="check">✓</span>
+        <h3>¡Listo, nos llegó!</h3>
+        <p>Lo miro y te escribo para contarte cómo seguimos.</p>
+      </div>
+    </div>
     <div class="cta-actions">
-      <a class="btn btn-on-gradient" href="index.html#contacto">Contame tu proyecto</a>
       <a class="btn btn-outline-on-gradient" href="index.html">Volver al inicio</a>
     </div>
   </section>
@@ -497,5 +543,7 @@
 </div>
 <script src="js/landing.js" defer></script>
 <script src="js/landing-nav.js" defer></script>
+<script src="js/landing-form.js" defer></script>
+<script src="js/nav-dropdown.js"></script>
 </body>
 </html>
