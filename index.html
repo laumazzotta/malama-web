@@ -315,7 +315,9 @@
     body.menu-open{overflow:hidden;}
     .hero{padding:64px 24px 72px;}
     .stage{height:440px;}
-    .mark{width:240px;margin-left:-120px;}
+    .mark{width:240px;margin-left:-120px;top:56px;}
+    .mini-card.browser{width:200px;left:0;bottom:8px;}
+    .mini-card.phone{width:108px;bottom:-14px;}
     .service-grid{grid-template-columns:1fr;}
     .field-row{grid-template-columns:1fr;}
     .footer-top{grid-template-columns:1fr;gap:36px;}
@@ -352,6 +354,7 @@
   .about-counter{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;}
   .about-counter b{font:600 26px/1 var(--font-display);background:linear-gradient(90deg,#AB05F2,#7D07F2,#23D9B7);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .about-counter span{font:600 12px/16px var(--font-display);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-on-gradient-secondary);}
+  .services-band{position:relative;z-index:1;background:linear-gradient(180deg,var(--ground) 0%,#0B1D22 14%,#0B1D22 86%,var(--ground) 100%);}
   .services-note{margin-top:36px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
   .services-note p{margin:0;font:400 16px var(--font-body);color:var(--ink-on-gradient-secondary);}
   /* ---------- trabajos ---------- */
@@ -806,6 +809,7 @@
     <span class="dx-orbe o4" aria-hidden="true"></span>
   </div>
 
+  <div class="services-band">
   <section class="section reveal" id="servicios">
     <p class="eyebrow">Servicios</p>
     <h2 class="h2-lg" style="max-width:640px;">Construimos la presencia digital que tu negocio necesita</h2>
@@ -858,6 +862,7 @@
       <a class="link-arrow" href="#contacto">Contame tu proyecto ↗</a>
     </div>
   </section>
+  </div>
 
   <div class="band-about">
   <section class="about-split" id="nosotros">

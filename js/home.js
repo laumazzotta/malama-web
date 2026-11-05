@@ -64,66 +64,113 @@
     targets.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ---------- carrusel infinito de trabajos (arrastrable) ---------- */
-  var rail = document.querySelector('[data-mq-rail]');
-  var track = document.querySelector('[data-mq-track]');
-  if (rail && track) {
+  /* ---------- carrusel infinito de trabajos (arrastrable) ----------
+     Desktop: una sola banda hacia la izquierda. Mobile (<=720px): dos bandas con
+     3 trabajos cada una; la primera va hacia la izquierda y la segunda hacia la derecha. */
+  var rail1 = document.querySelector('[data-mq-rail]');
+  var track1 = document.querySelector('[data-mq-track]');
+  if (rail1 && track1) {
     var SPEED = 0.62;
-    var hovering = false, dragging = false, moved = 0, startX = 0, startScroll = 0, pos = 0;
+    var items = Array.prototype.slice.call(track1.children);
+    var n = items.length / 2;
+    var originals = items.slice(0, n), clones = items.slice(n);
 
-    var half = function () { return track.scrollWidth / 2; };
-    var wrapPos = function () {
-      var h = half();
-      if (h <= 0) return;
-      if (pos >= h) pos -= h;
-      else if (pos < 0) pos += h;
+    var rail2 = rail1.cloneNode(false);
+    rail2.removeAttribute('data-mq-rail');
+    var track2 = track1.cloneNode(false);
+    track2.removeAttribute('data-mq-track');
+    rail2.appendChild(track2);
+    rail1.parentNode.appendChild(rail2);
+
+    var bands = [
+      { rail: rail1, track: track1, dir: 1, pos: 0, hovering: false, dragging: false },
+      { rail: rail2, track: track2, dir: -1, pos: 0, hovering: false, dragging: false }
+    ];
+    var mqMobile = window.matchMedia('(max-width: 720px)');
+
+    var period = function (b) {
+      var kids = b.track.children;
+      var h = kids.length / 2;
+      return kids.length > 1 ? kids[h].offsetLeft - kids[0].offsetLeft : 0;
     };
+    var wrapPos = function (b) {
+      var h = period(b);
+      if (h <= 0) return;
+      b.pos = ((b.pos % h) + h) % h;
+    };
+    var layout = function () {
+      var mobile = mqMobile.matches;
+      var cut = mobile ? Math.ceil(n / 2) : n;
+      var groups = mobile
+        ? [originals.slice(0, cut).concat(clones.slice(0, cut)), originals.slice(cut).concat(clones.slice(cut))]
+        : [originals.concat(clones), []];
+      groups.forEach(function (g, i) {
+        g.forEach(function (el) { bands[i].track.appendChild(el); });
+      });
+      rail2.hidden = !mobile;
+      rail2.style.display = mobile ? '' : 'none';
+      bands.forEach(function (b) {
+        b.pos = b.dir < 0 ? period(b) : 0;
+        b.rail.scrollLeft = b.pos;
+      });
+    };
+
     var tick = function () {
-      if (!dragging) {
-        if (!reduced && !hovering) pos += SPEED;
-        wrapPos();
-        rail.scrollLeft = pos;
-      }
+      bands.forEach(function (b) {
+        if (b.dragging) return;
+        if (!reduced && !b.hovering) b.pos += SPEED * b.dir;
+        wrapPos(b);
+        b.rail.scrollLeft = b.pos;
+      });
       window.requestAnimationFrame(tick);
     };
 
-    rail.addEventListener('mouseenter', function () { hovering = true; });
-    rail.addEventListener('mouseleave', function () { hovering = false; });
-    rail.addEventListener('focusin', function () { hovering = true; });
-    rail.addEventListener('focusout', function () { hovering = false; });
+    var bindBand = function (b) {
+      var rail = b.rail, moved = 0, startX = 0, startScroll = 0;
+      rail.addEventListener('mouseenter', function () { b.hovering = true; });
+      rail.addEventListener('mouseleave', function () { b.hovering = false; });
+      rail.addEventListener('focusin', function () { b.hovering = true; });
+      rail.addEventListener('focusout', function () { b.hovering = false; });
 
-    rail.addEventListener('pointerdown', function (e) {
-      if (e.button) return;
-      dragging = true; moved = 0; startX = e.clientX; startScroll = pos;
-    });
-    rail.addEventListener('pointermove', function (e) {
-      if (!dragging) return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) > moved) moved = Math.abs(dx);
-      if (moved <= 6) return; /* un toque o clic simple no es arrastre: el enlace debe funcionar */
-      if (!rail.classList.contains('is-dragging')) {
-        rail.classList.add('is-dragging');
-        if (rail.setPointerCapture) { try { rail.setPointerCapture(e.pointerId); } catch (err) {} }
-      }
-      pos = startScroll - dx; wrapPos(); rail.scrollLeft = pos;
-    });
-    var endDrag = function (e) {
-      if (!dragging) return;
-      dragging = false;
-      rail.classList.remove('is-dragging');
-      if (e && e.pointerId !== undefined && rail.releasePointerCapture) {
-        try { rail.releasePointerCapture(e.pointerId); } catch (err) {}
-      }
-      if (moved > 6) {
-        /* si se arrastró, no dispares el clic del enlace de abajo */
-        var block = function (ev) { ev.preventDefault(); ev.stopPropagation(); };
-        rail.addEventListener('click', block, true);
-        window.setTimeout(function () { rail.removeEventListener('click', block, true); }, 60);
-      }
+      rail.addEventListener('pointerdown', function (e) {
+        if (e.button) return;
+        b.dragging = true; moved = 0; startX = e.clientX; startScroll = b.pos;
+      });
+      rail.addEventListener('pointermove', function (e) {
+        if (!b.dragging) return;
+        var dx = e.clientX - startX;
+        if (Math.abs(dx) > moved) moved = Math.abs(dx);
+        if (moved <= 6) return; /* un toque o clic simple no es arrastre: el enlace debe funcionar */
+        if (!rail.classList.contains('is-dragging')) {
+          rail.classList.add('is-dragging');
+          if (rail.setPointerCapture) { try { rail.setPointerCapture(e.pointerId); } catch (err) {} }
+        }
+        b.pos = startScroll - dx; wrapPos(b); rail.scrollLeft = b.pos;
+      });
+      var endDrag = function (e) {
+        if (!b.dragging) return;
+        b.dragging = false;
+        rail.classList.remove('is-dragging');
+        if (e && e.pointerId !== undefined && rail.releasePointerCapture) {
+          try { rail.releasePointerCapture(e.pointerId); } catch (err) {}
+        }
+        if (moved > 6) {
+          /* si se arrastró, no dispares el clic del enlace de abajo */
+          var block = function (ev) { ev.preventDefault(); ev.stopPropagation(); };
+          rail.addEventListener('click', block, true);
+          window.setTimeout(function () { rail.removeEventListener('click', block, true); }, 60);
+        }
+      };
+      rail.addEventListener('pointerup', endDrag);
+      rail.addEventListener('pointercancel', endDrag);
+      rail.addEventListener('dragstart', function (e) { e.preventDefault(); });
     };
-    rail.addEventListener('pointerup', endDrag);
-    rail.addEventListener('pointercancel', endDrag);
-    rail.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+    bands.forEach(bindBand);
+    layout();
+    if (mqMobile.addEventListener) mqMobile.addEventListener('change', layout);
+    else if (mqMobile.addListener) mqMobile.addListener(layout);
+    window.addEventListener('load', layout);
     window.requestAnimationFrame(tick);
   }
 
