@@ -23,6 +23,14 @@ export function initIntroDiagnostico() {
 
   if (!portada && !pasos.length) return () => {};
 
+  // en móvil los orbes van dentro de la escena fija (la mueve el navegador, no el JS)
+  // y al terminar el recorrido las marcas de cada paso ya vienen rellenas
+  const movil = window.matchMedia && window.matchMedia('(max-width:900px)').matches;
+  const escenaFija = portada && portada.querySelector('.dx-escena');
+  if (movil && escenaFija) {
+    orbes.forEach((o) => { o.classList.add('en-escena'); escenaFija.appendChild(o); });
+  }
+
   let pedido = null;
 
   const medir = () => {
@@ -47,14 +55,16 @@ export function initIntroDiagnostico() {
 
         if (orbes.length && esc) {
           const caja = esc.getBoundingClientRect();
-          const cx = caja.left + caja.width / 2;
-          const cy = caja.top + caja.height / 2;
+          const ox0 = movil ? 0 : caja.left;
+          const oy0 = movil ? 0 : caja.top;
+          const cx = ox0 + caja.width / 2;
+          const cy = oy0 + caja.height / 2;
           const radio = (aroSvg ? aroSvg.getBoundingClientRect().width : 0) * 0.4467;
 
           // columna donde viven las marcas de los problemas
           const prim = pasos[0] && pasos[0].querySelector('.dx-ticks i');
           let colX = cx;
-          if (prim) {
+          if (prim && !movil) {
             const rp2 = prim.getBoundingClientRect();
             colX = rp2.left + rp2.width / 2;
           }
@@ -73,7 +83,12 @@ export function initIntroDiagnostico() {
               : 1 - Math.pow(-2 * salida + 2, 2) / 2;
 
             let x, y, escala;
-            if (salida >= 1) {
+            if (movil) {
+              // sale por abajo de la escena; las marcas rellenas toman la posta
+              x = ox + (cx - ox) * suave;
+              y = oy + (alto + 40 + i * 26 - oy) * suave;
+              escala = 1 - 0.31 * suave;
+            } else if (salida >= 1) {
               // ya salió de cuadro: queda pegado a la marca de su problema
               const paso = pasos[i];
               const marca = paso && paso.querySelectorAll('.dx-ticks i')[i];
@@ -94,7 +109,7 @@ export function initIntroDiagnostico() {
 
             orbe.style.transform = 'translate3d(' + (x - 6.5).toFixed(1) + 'px,'
               + (y - 6.5).toFixed(1) + 'px,0) scale(' + escala.toFixed(3) + ')';
-            orbe.classList.toggle('visible', q > 0.10 && y > -30 && y < alto + 30);
+            orbe.classList.toggle('visible', q > 0.10 && y > -30 && y < (movil ? caja.height : alto) - 10);
           });
         }
       }

@@ -547,6 +547,13 @@
     .dx-ilu{height:96px;margin-top:14px;padding:12px;}
     .dx-paso.revelado .dx-prob{transform:translateY(-8px);}
     .dx-raya{margin-top:16px;}
+    /* móvil: los orbes viven dentro de la escena fija y las marcas se rellenan solas, sin depender del scroll por JS */
+    .dx-orbe.en-escena{position:absolute;}
+    .dx-ticks i.d{border-color:transparent;}
+    .dx-ticks i.d:nth-child(1){background:var(--gradient-magenta);box-shadow:0 0 14px 1px rgba(171,5,242,.6);}
+    .dx-ticks i.d:nth-child(2){background:var(--gradient-violet);box-shadow:0 0 14px 1px rgba(125,7,242,.6);}
+    .dx-ticks i.d:nth-child(3){background:var(--gradient-blue);box-shadow:0 0 14px 1px rgba(82,7,242,.6);}
+    .dx-ticks i.d:nth-child(4){background:var(--gradient-teal);box-shadow:0 0 14px 1px rgba(35,217,183,.6);}
     .dx-det{margin-top:10px;}
   }
   @media (max-width:720px){
@@ -708,7 +715,7 @@
 
     <section class="dx-paso" data-dx-paso aria-labelledby="dx-p1">
       <div class="dx-fijo">
-        <div class="dx-ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="dx-ticks" aria-hidden="true"><i class="on d"></i><i></i><i></i><i></i></div>
         <div class="dx-prob">
           <p class="dx-num">01</p>
           <h3 id="dx-p1">No tenés sitio web, o quedó viejo.</h3>
@@ -727,7 +734,7 @@
 
     <section class="dx-paso" data-dx-paso aria-labelledby="dx-p2">
       <div class="dx-fijo">
-        <div class="dx-ticks" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i></div>
+        <div class="dx-ticks" aria-hidden="true"><i class="d"></i><i class="on d"></i><i></i><i></i></div>
         <div class="dx-prob">
           <p class="dx-num">02</p>
           <h3 id="dx-p2">Visitan tu tienda y no compran.</h3>
@@ -746,7 +753,7 @@
 
     <section class="dx-paso" data-dx-paso aria-labelledby="dx-p3">
       <div class="dx-fijo">
-        <div class="dx-ticks" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i></div>
+        <div class="dx-ticks" aria-hidden="true"><i class="d"></i><i class="d"></i><i class="on d"></i><i></i></div>
         <div class="dx-prob">
           <p class="dx-num">03</p>
           <h3 id="dx-p3">Compran una vez y no vuelven.</h3>
@@ -765,7 +772,7 @@
 
     <section class="dx-paso" data-dx-paso aria-labelledby="dx-p4">
       <div class="dx-fijo">
-        <div class="dx-ticks" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i></div>
+        <div class="dx-ticks" aria-hidden="true"><i class="d"></i><i class="d"></i><i class="d"></i><i class="on d"></i></div>
         <div class="dx-prob">
           <p class="dx-num">04</p>
           <h3 id="dx-p4">Tu marca no se reconoce.</h3>
