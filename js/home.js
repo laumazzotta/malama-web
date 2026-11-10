@@ -70,7 +70,8 @@
   var rail1 = document.querySelector('[data-mq-rail]');
   var track1 = document.querySelector('[data-mq-track]');
   if (rail1 && track1) {
-    var SPEED = 0.62;
+    /* velocidad en px por segundo; en mobile más rápida para que fluya */
+    var SPEED_DESKTOP = 38, SPEED_MOBILE = 70;
     var items = Array.prototype.slice.call(track1.children);
     var n = items.length / 2;
     var originals = items.slice(0, n), clones = items.slice(n);
@@ -111,16 +112,25 @@
       rail2.style.display = mobile ? '' : 'none';
       bands.forEach(function (b) {
         b.pos = b.dir < 0 ? period(b) : 0;
-        b.rail.scrollLeft = b.pos;
+        paint(b);
       });
     };
 
-    var tick = function () {
+    /* se mueve con transform (admite subpíxeles) en vez de scrollLeft, que iOS redondea y da tirones */
+    var paint = function (b) {
+      b.track.style.transform = 'translate3d(' + (-b.pos) + 'px,0,0)';
+    };
+
+    var last = 0;
+    var tick = function (now) {
+      var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+      last = now;
+      var speed = mqMobile.matches ? SPEED_MOBILE : SPEED_DESKTOP;
       bands.forEach(function (b) {
         if (b.dragging) return;
-        if (!reduced && !b.hovering) b.pos += SPEED * b.dir;
+        if (!reduced && !b.hovering) b.pos += speed * dt * b.dir;
         wrapPos(b);
-        b.rail.scrollLeft = b.pos;
+        paint(b);
       });
       window.requestAnimationFrame(tick);
     };
@@ -145,7 +155,7 @@
           rail.classList.add('is-dragging');
           if (rail.setPointerCapture) { try { rail.setPointerCapture(e.pointerId); } catch (err) {} }
         }
-        b.pos = startScroll - dx; wrapPos(b); rail.scrollLeft = b.pos;
+        b.pos = startScroll - dx; wrapPos(b); paint(b);
       });
       var endDrag = function (e) {
         if (!b.dragging) return;
