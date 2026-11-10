@@ -1,0 +1,8 @@
+{
+  "name": "malama-web",
+  "private": true,
+  "scripts": {
+    "componentes": "node componentes.js",
+    "componentes:watch": "node componentes.js --watch"
+  }
+}

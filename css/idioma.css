@@ -1,0 +1,10 @@
+/* Switch de idioma ES / EN (navbar en escritorio, cabecera del menú en mobile) */
+.lang-switch{display:inline-flex;align-items:center;padding:3px;border:1px solid var(--line);border-radius:999px;font:600 12px/1 var(--font-display,var(--display));letter-spacing:.06em;}
+.lang-switch>*{padding:7px 10px;border-radius:999px;}
+.lang-switch .lang-on{background:rgba(255,255,255,.1);color:var(--ink-on-gradient,var(--text));}
+.lang-switch a{color:var(--ink-on-gradient-secondary,var(--text-2));transition:color .2s ease,background .2s ease;}
+.lang-switch a:hover,.lang-switch a:focus-visible{color:var(--ink-on-gradient,var(--text));background:rgba(255,255,255,.05);}
+.mobile-menu-head .lang-switch{margin-left:auto;margin-right:10px;}
+@media (min-width:721px){
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+}

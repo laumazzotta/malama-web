@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0C0A11">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon-192.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="description" content="Websites and booking tools for hotels and vacation rentals by Malama Digital.">
+<meta property="og:title" content="Hotels &amp; Vacation Rentals · Malama Digital">
+<meta property="og:description" content="Websites and booking tools for hotels and vacation rentals by Malama Digital.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Hotels &amp; Vacation Rentals · Malama Digital</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&amp;family=Josefin+Slab:wght@400&amp;display=swap">
+<style>
+  :root{
+    --text:#F1F1F1;--text-2:#C5C5C5;
+    --magenta:#AB05F2;--violet:#7D07F2;--blue:#5207F2;--teal:#23D9B7;--lime:#D7F205;
+    --ground:#0C0A11;--ground-2:#141120;--ground-3:#1B1727;--line:rgba(241,241,241,.10);
+    --display:"Nunito", system-ui, sans-serif;
+    --accent:"Josefin Slab", Georgia, serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);font-family:var(--display);color:var(--text);}
+  h1,h2,h3{margin:0;font-weight:600;}
+  p{margin:0;}
+  a{text-decoration:none;color:inherit;}
+  ul{margin:0;padding:0;list-style:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 64px;}
+  .eyebrow{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);}
+  .body{font:400 17px/30px var(--display);color:var(--text-2);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:999px;font:600 13px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:17px 30px;border:1.5px solid transparent;transition:transform .25s ease, box-shadow .3s ease, background .3s ease, color .25s ease, border-color .25s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:linear-gradient(90deg,var(--violet),var(--blue));color:var(--text);box-shadow:0 14px 34px -12px rgba(125,7,242,.9);}
+  .btn-ghost{background:transparent;border-color:rgba(241,241,241,.24);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+  .btn-on-gradient{background:linear-gradient(90deg,var(--violet),var(--blue));color:var(--text);box-shadow:0 14px 34px -12px rgba(125,7,242,.9);}
+  .btn-outline-on-gradient{background:transparent;border-color:rgba(241,241,241,.30);color:var(--text);}
+  .btn-outline-on-gradient:hover{border-color:var(--teal);color:var(--teal);}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 64px;border-bottom:1px solid var(--line);background:rgba(12,10,17,.9);}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:28px;width:auto;}
+  .brand span{font:600 18px var(--display);}
+  .back{display:inline-flex;align-items:center;gap:9px;font:600 13px var(--display);letter-spacing:.04em;color:var(--text-2);border:1px solid var(--line);border-radius:999px;padding:11px 20px;transition:color .25s ease, border-color .25s ease;}
+  .back:hover{color:var(--teal);border-color:var(--teal);}
+
+  .hero{position:relative;overflow:hidden;padding:88px 0 96px;}
+  .aurora{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;}
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:60px;line-height:1.06;letter-spacing:-.02em;max-width:560px;}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--magenta),var(--violet),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px;}
+
+  .visual{position:relative;height:420px;display:flex;align-items:center;justify-content:center;}
+  .card{position:absolute;background:var(--ground-2);border:1px solid var(--line);border-radius:18px;box-shadow:0 34px 70px -34px rgba(0,0,0,.95);}
+  .bar{height:8px;border-radius:999px;background:rgba(241,241,241,.14);}
+  .bar.accent{background:linear-gradient(90deg,var(--blue),var(--teal));}
+  .block{border-radius:12px;background:linear-gradient(135deg,var(--magenta),var(--violet) 45%,var(--blue) 75%,var(--teal));}
+
+  .section{padding:88px 0;}
+  .section h2{font-size:38px;line-height:1.15;max-width:640px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:22px;margin-top:44px;}
+  .grid-2{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:20px 44px;margin-top:44px;}
+  .tile{background:var(--ground-2);border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:transform .3s ease, border-color .3s ease;}
+  .tile:hover{transform:translateY(-6px);border-color:rgba(241,241,241,.2);}
+  .tile h3{font-size:19px;}
+  .tile p{font:400 15px/25px var(--display);color:var(--text-2);}
+  .band .tile{background:var(--ground-3);border-color:rgba(241,241,241,.13);}
+  .band .tile:hover{border-color:rgba(241,241,241,.26);}
+  .item{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);}
+  .item i{width:9px;height:9px;border-radius:50%;margin-top:9px;flex-shrink:0;display:block;}
+  .item p{font:400 16px/26px var(--display);color:var(--text-2);}
+  .item strong{color:var(--text);font-weight:600;}
+
+  .steps{display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:20px;margin-top:44px;}
+  .step{border-top:2px solid rgba(241,241,241,.14);padding-top:18px;display:flex;flex-direction:column;gap:8px;}
+  .step span{font:600 14px var(--display);color:var(--teal);letter-spacing:.06em;}
+  .step h3{font-size:18px;}
+  .step p{font:400 15px/24px var(--display);color:var(--text-2);}
+
+  .cta{position:relative;overflow:hidden;background:radial-gradient(900px 420px at 50% 120%,rgba(125,7,242,.55),transparent 70%),#15102A;border-top:1px solid rgba(241,241,241,.07);border-bottom:1px solid rgba(241,241,241,.07);padding:96px 64px;text-align:center;}
+  .cta img{position:absolute;right:-30px;bottom:-60px;width:320px;opacity:.14;pointer-events:none;}
+  .cta h2{position:relative;z-index:1;font-size:46px;line-height:1.1;max-width:720px;margin:0 auto;}
+  .cta p{position:relative;z-index:1;font:400 17px/28px var(--display);color:var(--text-2);max-width:560px;margin:18px auto 0;}
+  .cta-actions{position:relative;z-index:1;display:flex;gap:16px;justify-content:center;margin-top:36px;flex-wrap:wrap;}
+
+  .foot{padding:40px 64px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .foot p{font:400 13px var(--display);color:var(--text-2);}
+
+  /* ── Movimiento ─────────────────────────────────────────── */
+  @keyframes riseIn{from{opacity:0;translate:0 26px;}to{opacity:1;translate:0 0;}}
+  @keyframes floatY{0%,100%{translate:0 0;}50%{translate:0 -13px;}}
+  @keyframes shimmer{to{background-position:300% 50%;}}
+  @keyframes drift1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(64px,46px) scale(1.12);}}
+  @keyframes drift2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-56px,62px) scale(1.09);}}
+  @keyframes gradientPan{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+  .aurora{animation:drift1 24s ease-in-out infinite;}
+  .aurora:nth-of-type(2){animation:drift2 29s ease-in-out infinite;}
+  .hero h1 em{background-image:linear-gradient(90deg,var(--magenta),var(--violet),var(--teal),var(--violet),var(--magenta));background-size:300% 100%;animation:shimmer 8s linear infinite;}
+  .visual .card{animation:floatY 9s ease-in-out infinite;}
+  .visual .card:nth-of-type(2){animation-duration:10.6s;animation-delay:.9s;}
+  .visual .card:nth-of-type(3){animation-duration:11.4s;animation-delay:1.7s;}
+  .cta img{animation:floatY 10s ease-in-out infinite;}
+
+  .anim-1{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) both;}
+  .anim-2{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .1s both;}
+  .anim-3{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .2s both;}
+  .anim-4{animation:riseIn .9s cubic-bezier(.2,.8,.2,1) .3s both;}
+  .anim-5{animation:riseIn 1.1s cubic-bezier(.2,.8,.2,1) .25s both;}
+
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      .reveal{animation:riseIn linear both;animation-timeline:view();animation-range:entry 4% entry 52%;}
+      .stagger > *{animation:riseIn linear both;animation-timeline:view();animation-range:entry 4% entry 52%;}
+      .stagger > *:nth-child(2){animation-range:entry 8% entry 56%;}
+      .stagger > *:nth-child(3){animation-range:entry 12% entry 60%;}
+      .stagger > *:nth-child(4){animation-range:entry 16% entry 64%;}
+      .stagger > *:nth-child(5){animation-range:entry 10% entry 58%;}
+      .stagger > *:nth-child(6){animation-range:entry 14% entry 62%;}
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition-duration:.01ms !important;}
+    .reveal,.stagger > *{opacity:1;translate:none;}
+  }
+  /* ══ Movimiento ampliado ═════════════════════════════════ */
+
+  @keyframes progGrow{from{scale:0 1;}to{scale:1 1;}}
+  @keyframes wordUp{from{translate:0 115%;rotate:3deg;opacity:0;}to{translate:0 0;rotate:0deg;opacity:1;}}
+  @keyframes vparScroll{from{translate:0 54px;}to{translate:0 -54px;}}
+  @keyframes clipIn{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 -10% 0 0);}}
+  @keyframes lineIn{from{scale:0 1;}to{scale:1 1;}}
+  @keyframes dotPop{from{scale:0;}to{scale:1;}}
+  @keyframes tileIn{from{opacity:0;translate:0 48px;scale:.94;rotate:x 14deg;}
+                    to{opacity:1;translate:0 0;scale:1;rotate:x 0deg;}}
+  @keyframes numIn{from{opacity:0;translate:0 16px;filter:blur(7px);}
+                   to{opacity:1;translate:0 0;filter:blur(0);}}
+  @keyframes auraPulse{0%,100%{opacity:.8;scale:1;}50%{opacity:1;scale:1.09;}}
+
+  /* 1 · barra de progreso del scroll */
+  .topbar{position:sticky;top:0;z-index:60;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
+  .progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;transform-origin:0 50%;scale:0 1;
+    background:linear-gradient(90deg,var(--magenta),var(--violet),var(--blue),var(--teal),var(--lime));}
+  .hero .eyebrow::after{animation:lineIn .9s cubic-bezier(.2,.8,.2,1) .3s both;}
+
+  /* 2 · el titular entra palabra por palabra */
+  .hero h1{max-width:580px;}
+  .hero-grid{grid-template-columns:1.42fr .58fr;gap:40px;}
+  .hero h1{font-size:52px;max-width:780px;}
+  .hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;
+    padding:.18em 0;margin:-.18em 0;}
+  .hero h1 .w > span,.hero h1 .w > em{display:inline-block;
+    animation:wordUp 1s cubic-bezier(.16,1,.3,1) both;}
+  .hero h1 .w:nth-child(1) > *{animation-delay:.10s;}
+  .hero h1 .w:nth-child(2) > *{animation-delay:.17s;}
+  .hero h1 .w:nth-child(3) > *{animation-delay:.24s;}
+  .hero h1 .w:nth-child(4) > *{animation-delay:.30s;}
+  .hero h1 .w:nth-child(5) > *{animation-delay:.36s;}
+  .hero h1 .w:nth-child(6) > *{animation-delay:.46s;}
+  .hero h1 .w:nth-child(7) > *{animation-delay:.52s;}
+  .hero h1 .w:nth-child(8) > *{animation-delay:.58s;}
+  .hero h1 .w:nth-child(9) > *{animation-delay:.64s;}
+  .hero h1 .w:nth-child(n+10) > *{animation-delay:.70s;}
+
+  /* 3 · la maqueta responde al cursor y al scroll */
+  .visual{perspective:1200px;}
+  .vpar{position:absolute;inset:0;}
+  .visual .card{transform:rotate(var(--rot,0deg)) translate3d(var(--px,0px),var(--py,0px),0);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);will-change:transform;}
+
+  /* 4 · títulos con revelado de máscara + línea que se dibuja */
+  .section .eyebrow,.hero .eyebrow{display:inline-flex;align-items:center;gap:14px;}
+  .section .eyebrow::after,.hero .eyebrow::after{content:"";display:block;width:72px;height:1px;
+    background:linear-gradient(90deg,var(--teal),transparent);transform-origin:0 50%;}
+
+  /* 5 · tarjetas en 3D con foco que sigue al cursor */
+  .grid-3{perspective:1100px;}
+  .tile{position:relative;overflow:hidden;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease;}
+  .tile::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s ease;
+    background:radial-gradient(260px 210px at var(--mx,50%) var(--my,0%),rgba(140,24,250,.5),rgba(125,7,242,.14) 55%,transparent 72%);}
+  .tile:hover::before{opacity:1;}
+  .tile > *{position:relative;}
+  .tile:hover{transform:translateY(-9px) scale(1.015);border-color:rgba(35,217,183,.38);
+    box-shadow:0 30px 56px -32px rgba(125,7,242,.95);}
+
+  /* 6 · cada fila dibuja su línea y su punto */
+  .item{position:relative;border-bottom-color:transparent;}
+  .item::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+    background:linear-gradient(90deg,rgba(241,241,241,.22),rgba(241,241,241,.05));transform-origin:0 50%;}
+
+  /* 7 · el proceso dibuja su regla y los números entran con foco */
+  .step{position:relative;border-top-color:transparent;}
+  .step::before{content:"";position:absolute;top:-2px;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--teal),rgba(35,217,183,0));transform-origin:0 50%;}
+  .step span{display:inline-block;}
+
+  /* 8 · aura viva detrás del remate */
+  .cta::before{content:"";position:absolute;left:50%;bottom:-200px;width:1040px;height:540px;
+    margin-left:-520px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(125,7,242,.5),rgba(171,5,242,.16) 60%,transparent 78%);
+    filter:blur(44px);animation:auraPulse 9s ease-in-out infinite;}
+
+  /* 9 · destello al pasar por los botones llenos */
+  .btn-primary,.btn-on-gradient{position:relative;overflow:hidden;}
+  .btn-primary::after,.btn-on-gradient::after{content:"";position:absolute;top:0;bottom:0;width:55%;
+    pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.34),transparent);
+    translate:-190% 0;transition:translate .8s cubic-bezier(.3,.7,.3,1);}
+  .btn-primary:hover::after,.btn-on-gradient:hover::after{translate:330% 0;}
+  .btn-primary:hover,.btn-on-gradient:hover{transform:translateY(-3px) scale(1.03);
+    box-shadow:0 22px 46px -14px rgba(125,7,242,1);}
+  .btn-ghost:hover,.btn-outline-on-gradient:hover{box-shadow:0 0 0 1px rgba(35,217,183,.35),0 16px 34px -20px rgba(35,217,183,.8);}
+
+  @supports (animation-timeline: view()){
+    @media (prefers-reduced-motion: no-preference){
+      .progress{animation:progGrow linear both;animation-timeline:scroll(root);}
+      .vpar{animation:vparScroll linear both;animation-timeline:view();animation-range:cover 0% cover 100%;}
+      /* en elementos bajos la fase "entry" dura apenas su alto:
+         con "cover" el recorrido se estira y la animación se ve */
+      .section h2,.cta h2{animation:clipIn linear both;animation-timeline:view();
+        animation-range:cover 4% cover 28%;}
+      .section .eyebrow::after{animation:lineIn linear both;animation-timeline:view();
+        animation-range:cover 2% cover 18%;}
+
+      .stagger > *{animation-range:cover 5% cover 33%;}
+      .stagger > *:nth-child(2){animation-range:cover 8% cover 36%;}
+      .stagger > *:nth-child(3){animation-range:cover 11% cover 39%;}
+      .stagger > *:nth-child(4){animation-range:cover 14% cover 42%;}
+      .stagger > *:nth-child(5){animation-range:cover 10% cover 38%;}
+      .stagger > *:nth-child(6){animation-range:cover 13% cover 41%;}
+
+      .grid-3.stagger > *{animation-name:tileIn;animation-range:cover 4% cover 36%;}
+      .grid-3.stagger > *:nth-child(2){animation-range:cover 9% cover 41%;}
+      .grid-3.stagger > *:nth-child(3){animation-range:cover 14% cover 46%;}
+
+      .item::after{animation:lineIn linear both;animation-timeline:view();
+        animation-range:cover 10% cover 40%;}
+      .item i{animation:dotPop cubic-bezier(.2,1.7,.4,1) both;animation-timeline:view();
+        animation-range:cover 12% cover 32%;}
+      .step::before{animation:lineIn linear both;animation-timeline:view();
+        animation-range:cover 8% cover 34%;}
+      .step:nth-child(2)::before{animation-range:cover 11% cover 37%;}
+      .step:nth-child(3)::before{animation-range:cover 14% cover 40%;}
+      .step:nth-child(4)::before{animation-range:cover 17% cover 43%;}
+      .step span{animation:numIn linear both;animation-timeline:view();
+        animation-range:cover 12% cover 38%;}
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .progress{scale:1 1;}
+    .hero h1 .w > span,.hero h1 .w > em{translate:none;rotate:none;opacity:1;}
+    .item::after,.step::before,.item i{scale:1;}
+    .section h2,.cta h2{clip-path:none;}
+    .section .eyebrow::after{scale:1 1;}
+  }
+</style>
+<style>
+  /* ajustes de la versión web */
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+  .form-success[hidden]{display:none;}
+  /* evita que el contenido ensanche las grillas de 1 columna en pantallas chicas */
+  @media (max-width:1024px){ .about-split{grid-template-columns:minmax(0,1fr);} }
+  .stackbar{overflow-x:clip;}
+</style>
+<link rel="stylesheet" href="../css/landing-responsive.css">
+<link rel="stylesheet" href="../css/site-chrome.css">
+<link rel="stylesheet" href="../css/landing-form.css">
+<noscript><style>.reveal,.stagger>*{opacity:1!important;transform:none!important;translate:none!important;clip-path:none!important;}</style></noscript>
+<link rel="stylesheet" href="../css/nav-dropdown.css">
+<!-- componente: idioma -->
+<link rel="stylesheet" href="../css/idioma.css">
+<link rel="alternate" hreflang="es" href="https://malama.com.ar/hoteleria.html">
+<link rel="alternate" hreflang="en" href="https://malama.com.ar/en/hoteleria.html">
+<link rel="alternate" hreflang="x-default" href="https://malama.com.ar/hoteleria.html">
+<!-- /componente: idioma -->
+</head>
+<body>
+<div style="width: 100%; background: #0C0A11;">
+
+  <!-- componente: navbar -->
+  <nav class="nav">
+    <a class="nav-brand" href="index.html" aria-label="Malama Digital home">
+      <img src="../assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
+      <span>Malama</span>
+    </a>
+    <div class="nav-links"><div class="nav-dd"><a class="nav-dd-trigger" href="index.html#servicios" aria-haspopup="true" aria-expanded="false">Services <svg class="nav-dd-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd-menu"><div class="nav-dd-menu-inner"><a href="diseno-web.html">Web design &amp; development</a><a href="ecommerce.html">E-commerce</a><a href="email-marketing.html">Email marketing</a><a href="branding.html">Branding</a><a href="hoteleria.html">Hotels &amp; vacation rentals</a></div></div></div>
+      <a href="index.html#nosotros">About</a>
+      <a href="index.html#trabajos">Work</a>
+      <a href="index.html#contacto">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../hoteleria.html" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
+        <span class="lang-on" aria-current="true">EN</span>
+      </div>
+      <a class="btn btn-primary" href="https://wa.me/5491124005587?text=Hi%21%20I%27d%20love%20to%20chat%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="margin-right:2px;"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>Get in touch</a>
+    </div>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <span class="progress" aria-hidden="true"></span>
+  </nav>
+  <!-- /componente: navbar -->
+  <!-- componente: menu-mobile -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <a class="nav-brand" href="index.html" data-menu-close><img src="../assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt=""><span>Malama</span></a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <a href="../hoteleria.html" hreflang="es" lang="es" aria-label="Versión en español">ES</a>
+        <span class="lang-on" aria-current="true">EN</span>
+      </div>
+      <button class="mobile-menu-close" type="button" aria-label="Close menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="mobile-menu-links">
+      <button class="mobile-menu-dd-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu-sub">Services <svg class="nav-dd-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="mobile-menu-sub" id="mobile-menu-sub"><div class="mobile-menu-sub-inner"><a href="diseno-web.html" data-menu-close>Web design &amp; development</a><a href="ecommerce.html" data-menu-close>E-commerce</a><a href="email-marketing.html" data-menu-close>Email marketing</a><a href="branding.html" data-menu-close>Branding</a><a href="hoteleria.html" data-menu-close>Hotels &amp; vacation rentals</a><a href="index.html#servicios" data-menu-close>See all services</a></div></div>
+      <a href="index.html#nosotros" data-menu-close>About</a>
+      <a href="index.html#trabajos" data-menu-close>Work</a>
+      <a href="index.html#contacto" data-menu-close>Contact</a>
+    </div>
+    <a class="btn btn-primary" data-menu-close href="https://wa.me/5491124005587?text=Hi%21%20I%27d%20love%20to%20chat%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="margin-right:2px;"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>Get in touch</a>
+  </div>
+  <!-- /componente: menu-mobile -->
+
+  <section class="hero">
+    <div class="aurora" style="width: 560px; height: 560px; background: radial-gradient(circle, rgba(171,5,242,.40), transparent 65%); top: -220px; left: -140px;"></div>
+    <div class="aurora" style="width: 480px; height: 480px; background: radial-gradient(circle, rgba(35,217,183,.26), transparent 65%); bottom: -220px; right: -100px;"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow anim-1">Hotels &amp; vacation rentals</p>
+        <h1 style="margin-top: 16px;"><span class="w"><span>A</span></span> <span class="w"><span>website</span></span> <span class="w"><span>that</span></span> <span class="w"><span>brings</span></span> <span class="w"><span>in</span></span> <span class="w"><span>visitors,</span></span> <span class="w"><span>and</span></span> <span class="w"><em>a system that turns them into guests</em></span></h1>
+        <p class="body anim-3" style="margin-top: 24px; max-width: 500px;">Run a hotel, cabins, or vacation rentals? Upgrade your online presence and automate the busywork: inquiries answered, availability always up to date, and bookings that come in on their own.</p>
+        <div class="hero-actions anim-4">
+          <a class="btn btn-primary" href="index.html#contacto">Start your project</a>
+          <a class="btn btn-ghost" href="index.html">Back to home</a>
+        </div>
+      </div>
+      <div class="visual anim-5">
+        <div class="vpar">
+        <div class="card" style="width: 330px; padding: 16px; left: 0; top: 30px; --rot: -4deg;">
+          <div style="display: flex; gap: 6px; margin-bottom: 12px;"><span style="width:7px;height:7px;border-radius:50%;background:rgba(241,241,241,.22);"></span><span style="width:7px;height:7px;border-radius:50%;background:rgba(241,241,241,.22);"></span><span style="width:7px;height:7px;border-radius:50%;background:rgba(241,241,241,.22);"></span></div>
+          <div class="block" style="height: 104px;"></div>
+          <div class="bar" style="width: 62%; margin-top: 12px;"></div>
+          <div class="bar" style="width: 40%; margin-top: 8px;"></div>
+          <div style="display: flex; gap: 8px; margin-top: 14px;"><div style="flex:1;border:1px solid rgba(241,241,241,.12);border-radius:10px;padding:7px 10px;"><span style="font:600 8px 'Nunito', sans-serif;color:#8D8A98;letter-spacing:.1em;text-transform:uppercase;">Check-in</span><div class="bar" style="width:72%;height:6px;margin-top:6px;"></div></div><div style="flex:1;border:1px solid rgba(241,241,241,.12);border-radius:10px;padding:7px 10px;"><span style="font:600 8px 'Nunito', sans-serif;color:#8D8A98;letter-spacing:.1em;text-transform:uppercase;">Check-out</span><div class="bar" style="width:72%;height:6px;margin-top:6px;"></div></div></div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 12px;">
+            <span style="font: 400 12px 'Nunito', sans-serif; color: #C5C5C5;">2 guests</span>
+            <span style="padding: 9px 16px; border-radius: 999px; background: linear-gradient(90deg,#7D07F2,#5207F2); font: 600 11px 'Nunito', sans-serif; letter-spacing: .06em; text-transform: uppercase;">Book now</span>
+          </div>
+        </div>
+        <div class="card" style="width: 186px; padding: 12px 14px; right: 0; top: 0; --rot: -7deg; display: flex; align-items: center; gap: 10px;">
+          <span style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#23D9B7,#D7F205); flex: 0 0 auto;"></span>
+          <div style="flex-grow: 1;">
+            <div style="font: 600 11px 'Nunito', sans-serif; color: #F1F1F1;">Booking confirmed</div>
+            <div class="bar" style="width: 62%; height: 6px; margin-top: 6px;"></div>
+          </div>
+        </div>
+        <div class="card" style="width: 170px; padding: 14px; right: 4px; bottom: 16px; --rot: 7deg;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between;">
+            <span style="font: 600 12px 'Nunito', sans-serif; color: #F1F1F1;">Availability</span>
+            <span style="font: 400 10px 'Nunito', sans-serif; color: #8D8A98;">Oct</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 11px;"><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#23D9B7,#D7F205);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#23D9B7,#D7F205);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#23D9B7,#D7F205);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#7D07F2,#5207F2);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:rgba(241,241,241,.08);"></span><span style="height:12px;border-radius:3px;background:linear-gradient(135deg,#23D9B7,#D7F205);"></span></div>
+        </div></div></div></div>
+    </section></div>
+  
+
+  <section class="section reveal band" style="background: #12101C; border-top: 1px solid rgba(241,241,241,.07); border-bottom: 1px solid rgba(241,241,241,.07);">
+    <div class="wrap">
+      <p class="eyebrow">Who it’s for</p>
+      <h2 style="margin-top: 14px;">You want more bookings with less busywork.</h2>
+      <div class="grid-3 stagger"><div class="tile"><span style="width:10px;height:10px;border-radius:50%;background:#AB05F2;display:block;"></span><h3>Hotels and inns</h3><p>You want guests booking directly on your website, not just through third-party booking sites.</p></div>
+        <div class="tile"><span style="width:10px;height:10px;border-radius:50%;background:#7D07F2;display:block;"></span><h3>Cabins and resorts</h3><p>You’re juggling availability unit by unit and answering the same questions all day.</p></div>
+        <div class="tile"><span style="width:10px;height:10px;border-radius:50%;background:#5207F2;display:block;"></span><h3>Vacation rentals</h3><p>You have one or more rentals and need a better way to handle inquiries, bookings, and payments.</p></div></div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="wrap">
+      <p class="eyebrow">WHAT’S INCLUDED</p>
+      <h2 style="margin-top: 14px;">Everything you need to show off your property and fill your calendar.</h2>
+      <div class="grid-2 stagger"><div class="item"><i style="background:#AB05F2;"></i><p><strong>A site built for bookings.</strong> Photos, amenities, location, and rates right where guests look for them, with a Book Now button always within reach.</p></div>
+        <div class="item"><i style="background:#7D07F2;"></i><p><strong>Availability and booking.</strong> Your current booking system, connected, or help choosing the one that fits best.</p></div>
+        <div class="item"><i style="background:#5207F2;"></i><p><strong>Organized inquiries.</strong> Forms, auto-replies, and a WhatsApp bot, so no question slips through the cracks.</p></div>
+        <div class="item"><i style="background:#23D9B7;"></i><p><strong>Ready for peak season.</strong> Update rates, deals, and availability yourself, anytime.</p></div>
+        <div class="item"><i style="background:#D7F205;"></i><p><strong>In your guests’ language.</strong> If you host travelers from abroad, your site can speak their language too.</p></div>
+        <div class="item"><i style="background:#AB05F2;"></i><p><strong>Easy to find.</strong> Maps, contact info, and business listings set up so travelers find you when they search your area.</p></div></div>
+    </div>
+  </section>
+
+
+  
+
+  <section class="section reveal" style="background-color: #12101C">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 style="margin-top: 14px;">A simple process, so you always know where your project stands.</h2>
+      <div class="steps stagger"><div class="step"><span>01</span><h3>Assessment</h3><p>A look at how you handle inquiries and bookings today, and which tools you use.</p></div>
+        <div class="step"><span>02</span><h3>Website design</h3><p>A preview of how the site will look and how guests will book.</p></div>
+        <div class="step"><span>03</span><h3>Booking and automations</h3><p>Connecting availability, inquiries, and auto-replies.</p></div>
+        <div class="step"><span>04</span><h3>Open for business</h3><p>Launching the site and fine-tuning it as the first bookings come in.</p></div></div>
+    </div>
+  </section>
+
+  <section class="cta" id="contacto">
+    <img src="../assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
+    <h2>Ready to fill more rooms?</h2>
+    <p>Share what you need and get a reply with next steps and a project proposal.</p>
+    <div class="form-card">
+      <!-- componente: formulario tipo="Website" -->
+      <form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama (versión en inglés)">
+        <p hidden><label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="field-row">
+          <div class="field">
+            <label for="d-nombre">Name</label>
+            <input id="d-nombre" name="nombre" type="text" placeholder="Your name" required>
+          </div>
+          <div class="field">
+            <label for="d-email">Email</label>
+            <input id="d-email" name="email" type="email" placeholder="you@company.com" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="d-tipo">What do you need?</label>
+          <select id="d-tipo" name="tipo">
+            <option selected>Website</option>
+            <option>E-commerce</option>
+            <option>Email marketing</option>
+            <option>Branding</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="d-mensaje">Message</label>
+          <textarea id="d-mensaje" name="mensaje" placeholder="A few lines about your project and what you’re hoping to get out of it." required></textarea>
+        </div>
+        <p class="form-error" id="form-error" role="alert" hidden>Hmm, your message didn’t go through. Give it another try or send an email to <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
+        <div class="form-actions">
+          <button class="btn btn-on-gradient" type="submit" name="canal" value="mail">SEND BY EMAIL</button>
+          <button class="btn btn-outline-on-gradient" type="submit" name="canal" value="whatsapp">SEND ON WHATSAPP</button>
+        </div>
+      </form>
+      <div class="form-success" id="form-success" hidden>
+        <span class="check">✓</span>
+        <h3>Got it, thanks!</h3>
+        <p>Your message is in. Expect a reply soon with next steps.</p>
+      </div>
+      <!-- /componente: formulario -->
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-outline-on-gradient" href="index.html">Back to home</a>
+    </div>
+  </section>
+
+  <!-- componente: footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-lockup">
+          <img src="../assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="Malama Digital">
+          <span class="footer-wordmark">
+            <span class="w1">MALAMA</span>
+            <span class="w2">digital</span>
+          </span>
+        </div>
+        <p class="footer-tag">Making brands stand out online.</p>
+        <div class="social-row" style="margin-top:24px;">
+          <a class="social-icon" href="https://www.instagram.com/malama.digital/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/company/malamadigital" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><line x1="7.5" y1="10" x2="7.5" y2="16.5"></line><circle cx="7.5" cy="7" r="0.9" fill="currentColor" stroke="none"></circle><path d="M11.5 16.5V10"></path><path d="M11.5 12.8c0-1.6 1.2-2.8 2.6-2.8s2.4 1 2.4 2.8v3.7"></path></svg>
+          </a>
+          <a class="social-icon" href="https://wa.me/5491124005587?text=Hi%21%20I%27d%20love%20to%20chat%20about%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>
+          </a>
+          <a class="social-icon" href="mailto:contacto.malama@gmail.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="4"></rect><path d="M4 7l8 6l8-6"></path></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="index.html#servicios">Services</a></li>
+          <li><a href="index.html#trabajos">Work</a></li>
+          <li><a href="index.html#nosotros">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a></li>
+          <li><a href="tel:+5491124005587">+54 9 11 2400 5587</a></li>
+          <li><a href="index.html#contacto">Start a project</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Malama Digital. All rights reserved.</p>
+      <p class="footer-copy">Thoughtfully made in Argentina.</p>
+    </div>
+  </footer>
+  <!-- /componente: footer -->
+<script src="../js/landing.js" defer></script>
+<script src="../js/landing-nav.js" defer></script>
+<script src="../js/landing-form.js" defer></script>
+<script src="../js/nav-dropdown.js"></script>
+</body>
+</html>

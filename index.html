@@ -590,12 +590,19 @@
 </style>
 <noscript><style>.reveal,.stagger>*{opacity:1!important;transform:none!important;translate:none!important;clip-path:none!important;}</style></noscript>
 <link rel="stylesheet" href="css/nav-dropdown.css">
+<!-- componente: idioma -->
+<link rel="stylesheet" href="css/idioma.css">
+<link rel="alternate" hreflang="es" href="https://malama.com.ar/">
+<link rel="alternate" hreflang="en" href="https://malama.com.ar/en/">
+<link rel="alternate" hreflang="x-default" href="https://malama.com.ar/">
+<!-- /componente: idioma -->
 </head>
 <body>
 <div class="page">
 
   <div class="progress"><div class="progress-bar"></div></div>
 
+  <!-- componente: navbar -->
   <nav class="nav">
     <a class="nav-brand" href="#top" aria-label="Malama Digital — inicio">
       <img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt="">
@@ -607,13 +614,23 @@
       <a href="#contacto">Contacto</a>
     </div>
     <div class="nav-cta">
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <span class="lang-on" aria-current="true">ES</span>
+        <a href="en/index.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
       <a class="btn btn-primary" href="https://wa.me/5491124005587?text=Hola%21%20Quer%C3%ADa%20consultarte%20por%20un%20proyecto." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="margin-right:2px;"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>Hablemos</a>
     </div>
     <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </nav>
+  <!-- /componente: navbar -->
+  <!-- componente: menu-mobile -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú" aria-hidden="true">
     <div class="mobile-menu-head">
       <a class="nav-brand" href="#top" data-menu-close><img src="assets/6cf5cf5d000fcc0f9f12cae9b76b6fcc.svg" alt=""><span>Malama</span></a>
+      <div class="lang-switch" role="group" aria-label="Idioma">
+        <span class="lang-on" aria-current="true">ES</span>
+        <a href="en/index.html" hreflang="en" lang="en" aria-label="English version">EN</a>
+      </div>
       <button class="mobile-menu-close" type="button" aria-label="Cerrar menú"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="mobile-menu-links">
@@ -624,6 +641,7 @@
     </div>
     <a class="btn btn-primary" data-menu-close href="https://wa.me/5491124005587?text=Hola%21%20Quer%C3%ADa%20consultarte%20por%20un%20proyecto." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="margin-right:2px;"><path d="M20.4 11.8a8.4 8.4 0 0 1-12.5 7.4L3.6 20.4l1.3-4.2A8.4 8.4 0 1 1 20.4 11.8z"></path><path d="M9 9.3c.2-.5.4-.5.7-.5h.4c.2 0 .4 0 .6.5l.6 1.5c.1.2 0 .4-.1.6l-.4.4c-.1.2-.2.3-.1.5.5 1 1.3 1.7 2.3 2.2.2.1.4 0 .5-.1l.4-.5c.2-.2.4-.2.6-.1l1.4.7c.3.2.4.3.4.5 0 .5-.3 1.2-1.5 1.3-.9.1-2.1-.3-3.4-1.2-1.1-.8-2-2-2.4-3.1-.3-1-.2-1.9 0-2.4z"></path></svg>Hablemos</a>
   </div>
+  <!-- /componente: menu-mobile -->
 
   <section class="hero" id="top">
     <div class="aurora a1"></div>
@@ -1032,50 +1050,53 @@
         </div>
       </div>
       <div class="form-card">
-                  <form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contacto">
-            <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama">
-            <p hidden><label>No completar este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-            <div class="field-row">
-              <div class="field">
-                <label for="d-nombre">Nombre</label>
-                <input id="d-nombre" name="nombre" type="text" placeholder="Tu nombre" required="">
-              </div>
-              <div class="field">
-                <label for="d-email">Email</label>
-                <input id="d-email" name="email" type="email" placeholder="tu@email.com" required="">
-              </div>
+        <!-- componente: formulario -->
+        <form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contacto">
+          <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama">
+          <p hidden><label>No completar este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="field-row">
+            <div class="field">
+              <label for="d-nombre">Nombre</label>
+              <input id="d-nombre" name="nombre" type="text" placeholder="Tu nombre" required>
             </div>
             <div class="field">
-              <label for="d-tipo">Tipo de proyecto</label>
-              <select id="d-tipo" name="tipo">
-                <option>Sitio web</option>
-                <option>E-commerce</option>
-                <option>Email marketing</option>
-                <option>Branding</option>
-                <option>Otro</option>
-              </select>
+              <label for="d-email">Email</label>
+              <input id="d-email" name="email" type="email" placeholder="tu@email.com" required>
             </div>
-            <div class="field">
-              <label for="d-mensaje">Mensaje</label>
-              <textarea id="d-mensaje" name="mensaje" placeholder="Contame un poco qué necesitás..." required=""></textarea>
-            </div>
-            <p class="form-error" id="form-error" role="alert" hidden>No pudimos enviar tu mensaje. Probá de nuevo o escribinos a <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
-            <div class="form-actions">
-              <button class="btn btn-primary" type="submit" name="canal" value="mail">ENVIAR POR MAIL</button>
-              <button class="btn btn-ghost" type="submit" name="canal" value="whatsapp">ENVIAR POR WHATSAPP</button>
-            </div>
-          </form>
-                  <div class="form-success" id="form-success" hidden>
-            <span class="check">✓</span>
-            <h3>¡Listo, nos llegó!</h3>
-            <p>Lo miro y te escribo para contarte cómo seguimos.</p>
           </div>
+          <div class="field">
+            <label for="d-tipo">Tipo de proyecto</label>
+            <select id="d-tipo" name="tipo">
+              <option>Sitio web</option>
+              <option>E-commerce</option>
+              <option>Email marketing</option>
+              <option>Branding</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="d-mensaje">Mensaje</label>
+            <textarea id="d-mensaje" name="mensaje" placeholder="Contame un poco qué necesitás..." required></textarea>
+          </div>
+          <p class="form-error" id="form-error" role="alert" hidden>No pudimos enviar tu mensaje. Probá de nuevo o escribinos a <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" name="canal" value="mail">ENVIAR POR MAIL</button>
+            <button class="btn btn-ghost" type="submit" name="canal" value="whatsapp">ENVIAR POR WHATSAPP</button>
+          </div>
+        </form>
+        <div class="form-success" id="form-success" hidden>
+          <span class="check">✓</span>
+          <h3>¡Listo, nos llegó!</h3>
+          <p>Lo miro y te escribo para contarte cómo seguimos.</p>
+        </div>
+        <!-- /componente: formulario -->
       </div>
     </div>
   </section>
   </div>
 
+  <!-- componente: footer -->
   <footer class="footer">
     <div class="footer-top">
       <div class="footer-brand">
@@ -1086,12 +1107,12 @@
             <span class="w2">digital</span>
           </span>
         </div>
-        <p class="footer-tag">Tu marca, bien parada en internet.</p>
+        <p class="footer-tag">Hago que tu marca la rompa online.</p>
         <div class="social-row" style="margin-top:24px;">
-          <a class="social-icon" href="https://www.instagram.com/malama.digital/" target="_blank" aria-label="Instagram">
+          <a class="social-icon" href="https://www.instagram.com/malama.digital/" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.2" cy="6.8" r="1"></circle></svg>
           </a>
-          <a class="social-icon" href="https://www.linkedin.com/company/malamadigital" target="_blank" aria-label="LinkedIn">
+          <a class="social-icon" href="https://www.linkedin.com/company/malamadigital" target="_blank" rel="noopener" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"></rect><line x1="7.5" y1="10" x2="7.5" y2="16.5"></line><circle cx="7.5" cy="7" r="0.9" fill="currentColor" stroke="none"></circle><path d="M11.5 16.5V10"></path><path d="M11.5 12.8c0-1.6 1.2-2.8 2.6-2.8s2.4 1 2.4 2.8v3.7"></path></svg>
           </a>
           <a class="social-icon" href="https://wa.me/5491124005587?text=Hola%21%20Quer%C3%ADa%20consultarte%20por%20un%20proyecto." target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -1124,6 +1145,7 @@
       <p class="footer-copy">Hecho con cuidado, desde Argentina.</p>
     </div>
   </footer>
+  <!-- /componente: footer -->
 
 </div>
 <script src="js/home.js" defer></script>

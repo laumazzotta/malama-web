@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Componentes: mirar cambios",
+      "type": "shell",
+      "command": "node componentes.js --watch",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "silent", "panel": "dedicated" },
+      "runOptions": { "runOn": "folderOpen" }
+    },
+    {
+      "label": "Componentes: actualizar páginas",
+      "type": "shell",
+      "command": "node componentes.js",
+      "problemMatcher": []
+    }
+  ]
+}

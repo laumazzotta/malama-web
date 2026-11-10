@@ -1,0 +1,39 @@
+<form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contacto">
+  <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama">
+  <p hidden><label>No completar este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+  <div class="field-row">
+    <div class="field">
+      <label for="d-nombre">Nombre</label>
+      <input id="d-nombre" name="nombre" type="text" placeholder="Tu nombre" required>
+    </div>
+    <div class="field">
+      <label for="d-email">Email</label>
+      <input id="d-email" name="email" type="email" placeholder="tu@email.com" required>
+    </div>
+  </div>
+  <div class="field">
+    <label for="d-tipo">Tipo de proyecto</label>
+    <select id="d-tipo" name="tipo">
+      <option>Sitio web</option>
+      <option>E-commerce</option>
+      <option>Email marketing</option>
+      <option>Branding</option>
+      <option>Otro</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="d-mensaje">Mensaje</label>
+    <textarea id="d-mensaje" name="mensaje" placeholder="Contame un poco qué necesitás..." required></textarea>
+  </div>
+  <p class="form-error" id="form-error" role="alert" hidden>No pudimos enviar tu mensaje. Probá de nuevo o escribinos a <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
+  <div class="form-actions">
+    <button class="btn {{#landing}}btn-on-gradient{{/landing}}{{^landing}}btn-primary{{/landing}}" type="submit" name="canal" value="mail">ENVIAR POR MAIL</button>
+    <button class="btn {{#landing}}btn-outline-on-gradient{{/landing}}{{^landing}}btn-ghost{{/landing}}" type="submit" name="canal" value="whatsapp">ENVIAR POR WHATSAPP</button>
+  </div>
+</form>
+<div class="form-success" id="form-success" hidden>
+  <span class="check">✓</span>
+  <h3>¡Listo, nos llegó!</h3>
+  <p>Lo miro y te escribo para contarte cómo seguimos.</p>
+</div>

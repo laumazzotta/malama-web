@@ -195,6 +195,7 @@
      el envío falla y se muestra el aviso de error.
      "Enviar por WhatsApp": abre el chat con el mensaje ya armado. */
   var WA_NUMBER = '5491124005587';
+  var EN = document.documentElement.lang === 'en';
   var form = document.getElementById('contact-form');
   var ok = document.getElementById('form-success');
   var fail = document.getElementById('form-error');
@@ -203,8 +204,11 @@
       e.preventDefault();
       if (e.submitter && e.submitter.value === 'whatsapp') {
         var f = form.elements;
-        var texto = 'Hola! Soy ' + f.nombre.value.trim() + ' (' + f.email.value.trim() + ').\n' +
-          'Tipo de proyecto: ' + f.tipo.value + '\n\n' + f.mensaje.value.trim();
+        var texto = EN
+          ? 'Hi! I\'m ' + f.nombre.value.trim() + ' (' + f.email.value.trim() + ').\n' +
+            'Project: ' + f.tipo.value + '\n\n' + f.mensaje.value.trim()
+          : 'Hola! Soy ' + f.nombre.value.trim() + ' (' + f.email.value.trim() + ').\n' +
+            'Tipo de proyecto: ' + f.tipo.value + '\n\n' + f.mensaje.value.trim();
         window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(texto),
           '_blank', 'noopener');
         return;
@@ -213,7 +217,7 @@
       var label = btn.textContent;
       if (fail) fail.hidden = true;
       btn.disabled = true;
-      btn.textContent = 'Enviando…';
+      btn.textContent = EN ? 'Sending…' : 'Enviando…';
 
       fetch('/', {
         method: 'POST',

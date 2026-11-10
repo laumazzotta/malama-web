@@ -1,0 +1,39 @@
+<form id="contact-form" name="contacto" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contacto">
+  <input type="hidden" name="subject" value="Nuevo mensaje desde la web de Malama (versión en inglés)">
+  <p hidden><label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+  <div class="field-row">
+    <div class="field">
+      <label for="d-nombre">Name</label>
+      <input id="d-nombre" name="nombre" type="text" placeholder="Your name" required>
+    </div>
+    <div class="field">
+      <label for="d-email">Email</label>
+      <input id="d-email" name="email" type="email" placeholder="you@company.com" required>
+    </div>
+  </div>
+  <div class="field">
+    <label for="d-tipo">What do you need?</label>
+    <select id="d-tipo" name="tipo">
+      <option>Website</option>
+      <option>E-commerce</option>
+      <option>Email marketing</option>
+      <option>Branding</option>
+      <option>Something else</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="d-mensaje">Message</label>
+    <textarea id="d-mensaje" name="mensaje" placeholder="A few lines about your project and what you’re hoping to get out of it." required></textarea>
+  </div>
+  <p class="form-error" id="form-error" role="alert" hidden>Hmm, your message didn’t go through. Give it another try or send an email to <a href="mailto:contacto.malama@gmail.com">contacto.malama@gmail.com</a>.</p>
+  <div class="form-actions">
+    <button class="btn {{#landing}}btn-on-gradient{{/landing}}{{^landing}}btn-primary{{/landing}}" type="submit" name="canal" value="mail">SEND BY EMAIL</button>
+    <button class="btn {{#landing}}btn-outline-on-gradient{{/landing}}{{^landing}}btn-ghost{{/landing}}" type="submit" name="canal" value="whatsapp">SEND ON WHATSAPP</button>
+  </div>
+</form>
+<div class="form-success" id="form-success" hidden>
+  <span class="check">✓</span>
+  <h3>Got it, thanks!</h3>
+  <p>Your message is in. Expect a reply soon with next steps.</p>
+</div>
