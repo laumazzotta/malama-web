@@ -206,8 +206,8 @@
   .contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:flex-start;}
   .contact p.lede{font:400 16px/26px var(--font-body);color:var(--ink-on-gradient-secondary);margin-top:18px;max-width:400px;}
   .contact-info{margin-top:32px;display:flex;flex-direction:column;gap:16px;}
-  .contact-info a, .contact-info span.value{font:600 15px var(--font-display);color:var(--ink-on-gradient);transition:color .2s ease;}
-  .contact-info a:hover{color:var(--gradient-teal);}
+  .contact-info a:not(.social-icon), .contact-info span.value{font:600 15px var(--font-display);color:var(--ink-on-gradient);transition:color .2s ease;}
+  .contact-info a:not(.social-icon):hover{color:var(--gradient-teal);}
   .contact-info .label{display:block;font:600 12px var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-on-gradient-secondary);margin-bottom:4px;}
   .form-card{position:relative;background:var(--ground-2);border:1px solid var(--line);border-radius:var(--radius-md);padding:40px;overflow:hidden;}
   .form-card::before{content:"";position:absolute;top:-80px;left:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(82,7,242,.35),transparent 65%);pointer-events:none;}
@@ -231,7 +231,7 @@
   .footer-wordmark{display:flex;flex-direction:column;line-height:1;}
   .footer-wordmark .w1{font:600 22px var(--font-display);letter-spacing:.22em;color:var(--ink-on-gradient);}
   .footer-wordmark .w2{font:400 16px var(--font-accent);letter-spacing:.06em;color:var(--ink-on-gradient-secondary);margin-top:4px;}
-  .footer-tag{font:400 18px var(--font-accent);font-style:italic;color:var(--ink-on-gradient-secondary);margin-top:18px;max-width:280px;}
+  .footer-tag{font:400 16px/1.55 var(--font-body);font-style:normal;color:var(--ink-on-gradient-secondary);margin-top:18px;max-width:280px;}
   .footer-col h4{font:600 13px var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-on-gradient-secondary);margin-bottom:18px;}
   .footer-col ul{display:flex;flex-direction:column;gap:12px;}
   .footer-col a{font:400 15px var(--font-body);color:var(--ink-on-gradient);transition:color .2s ease, transform .2s ease;display:inline-block;}
@@ -240,7 +240,7 @@
   .footer-copy{font:400 13px var(--font-body);color:var(--ink-on-gradient-secondary);}
   .social-row{display:flex;align-items:center;gap:14px;}
   .social-icon{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line-strong);display:flex;align-items:center;justify-content:center;color:var(--ink-on-gradient);transition:background .3s ease, border-color .3s ease, transform .3s ease;}
-  .social-icon:hover{background:linear-gradient(135deg,var(--gradient-violet),var(--gradient-teal));border-color:transparent;transform:translateY(-3px) scale(1.06);}
+  .social-icon:hover{background:linear-gradient(135deg,var(--gradient-violet),var(--gradient-teal));background-origin:border-box;border-color:transparent;transform:translateY(-3px) scale(1.06);}
 
   /* ---------- reveal ---------- */
   /* Apariciones por scroll: CSS puro, sin depender de JS.
@@ -354,6 +354,11 @@
   .about-counter{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;}
   .about-counter b{font:600 26px/1 var(--font-display);background:linear-gradient(90deg,#AB05F2,#7D07F2,#23D9B7);-webkit-background-clip:text;background-clip:text;color:transparent;}
   .about-counter span{font:600 12px/16px var(--font-display);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-on-gradient-secondary);}
+  @media (max-width:520px){
+    .about-counters{gap:18px 16px;flex-wrap:wrap;}
+    .about-counter{flex:1 1 0;min-width:min-content;}
+    .about-counter span{font-size:11px;letter-spacing:.04em;}
+  }
   .services-band{position:relative;z-index:1;background:linear-gradient(180deg,var(--ground) 0%,#0B1D22 14%,#0B1D22 86%,var(--ground) 100%);}
   .services-note{margin-top:36px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
   .services-note p{margin:0;font:400 16px var(--font-body);color:var(--ink-on-gradient-secondary);}
